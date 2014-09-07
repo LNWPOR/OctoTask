@@ -7,6 +7,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.*;
 
+import State.GamePlayState;
+import State.MenuState;
+
 public class GameController extends StateBasedGame{
     public static int gameWidth=1024;
     public static int gameHeight=720;
@@ -34,6 +37,7 @@ public class GameController extends StateBasedGame{
 	public void initStatesList(GameContainer gc) throws SlickException {
 		// TODO Auto-generated method stub
 		this.addState(new MenuState());
+		this.addState(new GamePlayState());
 	}
 
 }
