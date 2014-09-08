@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class GamePlayState extends BasicGameState{
+ public class GamePlayState extends BasicGameState{
 
 	private Image blackground;
 	
