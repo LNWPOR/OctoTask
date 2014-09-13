@@ -12,6 +12,8 @@ import GM.GameController;
 
 public class Telephone {
 
+	private Octopus octopusRef;
+	
 	private Image smallPhoneImg1; //100*100
 	private Image smallPhoneImg2; 
 	private Image smallPhoneImg3; 
@@ -32,20 +34,28 @@ public class Telephone {
 	Random rand = new Random();
 	
 	public Telephone() throws SlickException{
-		smallPhoneImg1 = new Image("res/smallBlackPhone.png");
-		smallPhoneImg2 = new Image("res/smallGreenPhone.png");
-		smallPhoneImg3 = new Image("res/smallRedPhone.png");
-		smallPhoneImg4 = new Image("res/smallYellowPhone.png");
+		smallPhoneImg1 = new Image("res/smallBlackPhone2.png");
+		smallPhoneImg2 = new Image("res/smallGreenPhone2.png");
+		smallPhoneImg3 = new Image("res/smallRedPhone2.png");
+		smallPhoneImg4 = new Image("res/smallYellowPhone2.png");
 		
 		bigPhoneImg1 = new Image("res/bigBlackPhone.png");
 		bigPhoneImg2 = new Image("res/bigGreenPhone.png");
 		bigPhoneImg3 = new Image("res/bigRedPhone.png");
 		bigPhoneImg4 = new Image("res/bigYellowPhone.png");
 		
+		octopusRef = new Octopus();
+		
 		this.bx = 0;
 		this.by = GameController.gameHeight-220;
+		this.sx = octopusRef.getX()+170;
+		this.sy = octopusRef.getY()-50;
 	}
 	public void render( Graphics g){
+		changePhone();
+		smallPhoneImg1.draw(sx,sy);
+	}
+	private void changePhone() {
 		if(yourPhone==1 )
 		{
 			bigPhoneImg1.draw(bx,by);
@@ -65,6 +75,7 @@ public class Telephone {
 	}
 	public void update(GameContainer c){
 		selectPhone(c);
+		followOcto(c);
 	}
 	
 	public void selectPhone(GameContainer c){
@@ -81,6 +92,26 @@ public class Telephone {
 		
 		
 	}
+	
+	private void followOcto(GameContainer c) {
+		if(c.getInput().isKeyDown(Input.KEY_A))
+		{
+			MoveLeft();
+		}
+		if(c.getInput().isKeyDown(Input.KEY_D))
+		{
+			MoveRight();
+		}
+	}
+	public void MoveLeft(){
+		if(this.sx!=180)
+		this.sx-=1;
+	}
+	public void MoveRight(){
+		if(this.sx!=GameController.gameWidth-30)
+		this.sx+=1;
+	}
+	
 	
 	
 }
