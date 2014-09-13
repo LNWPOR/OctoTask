@@ -2,6 +2,7 @@ package State;
 
 import java.util.LinkedList;
 
+import org.lwjgl.util.Timer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -16,6 +17,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 
+
+
+import Object.Calculator;
 import Object.Dust;
 import Object.HP;
 import Object.Octopus;
@@ -24,66 +28,80 @@ import Object.Octopus;
 
 	private Image blackground;
 	private Dust[] dusts;
+	private int dustCount=10;
 	private Octopus octopusRef;
-	private int dustCount=1;
-	private LinkedList<Game2> game2;
+	private Calculator calRef;
 	
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
-		game2 = new LinkedList<Game2>();
+
 	}
 	
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
 		octopusRef = new Octopus();
 		initGame2();
+		initGame3();
 	}
-
 	private void initGame2() throws SlickException {
 		float rangeFall=500;
 		dusts = new Dust[dustCount];
 	   for(int i =0; i<dustCount;i++)
 	   {
 		  dusts [i] = new Dust(i*rangeFall);
-	      game2.add(dusts[i]);
+	     
 	    }
 	}
+	private void initGame3() throws SlickException {
+		calRef = new Calculator();
+	}
+
 
 	@Override
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
-		g.setColor(Color.transparent);//collider จะได้ไม่มีสี
+		//g.setColor(Color.transparent);//collider จะได้ไม่มีสี
 		blackground.draw(0,0);
-	
+		
 		octopusRef.render(g);
-	
+		renderGame3(g);
 		renderGame2(g);
 		
 		g.setColor(Color.white);//UI จะได้มีสี
 		g.drawString("HP "+HP.hp, 100, 10);
 	}
-
 	private void renderGame2( Graphics g) {
-		for (Game2 g2 :game2) {
-		    g2.render(g);
+		for (Dust dust :dusts) {
+		    dust.render(g);
 		    }
 	}
+	private void renderGame3(Graphics g) {
+		calRef.render(g);
+	}
+
+
 
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
-		
-		updateGame2();
 		octopusRef.update(c);
-		//octopusController(c);
+		updateGame2();
+		updateGame3(c);
+		
+		
+      
+	}
+	private void updateGame2() {
+		for (Dust dust :dusts) {
+			    dust.update();
+			    }
+	}
+
+	private void updateGame3(GameContainer c) {
+		calRef.update(c);
 	}
 
 	
 
-	private void updateGame2() {
-		for (Game2 g2 :game2) {
-			    g2.update();
-			    }
-	}
-
+	
 	@Override
 	public int getID() {
 		

@@ -1,23 +1,17 @@
 package Object;
 
 import java.util.Random;
-
-
-
-
-
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
-import State.Game2;
 
-public class Dust implements Game2{
+
+public class Dust {
 
 	private Image dustImg; //60*60
-	
 	private float x;
 	private float y;
 	private float speedFallDown = (float) 0.5;
@@ -35,31 +29,32 @@ public class Dust implements Game2{
 	}
 	
 	public void render(Graphics g){
-		drawCollider(g);
-		dustImg.draw(this.x,this.y);
-	}
-
-	private void drawCollider(Graphics g) {
 		g.draw(dustShapeRec);
-		dustShapeRec.setLocation(this.x, this.y);
+		dustImg.draw(this.x,this.y);
+		
 	}
+	
 	public void update(){
 		this.y+=speedFallDown;
-		
-		
+		dustShapeRec.setLocation(this.x, this.y);
+		OnCollider();
 		
 		
 	}
+	
 	public void randomPosDust(float rangeFall){
 		this.y=-1;
 		Random rand = new Random();
 		this.y -=rangeFall;
 		this.x= rand.nextFloat()*800;
 	}
-	public boolean isCollide(){
-	
-		return false;
+	public void OnCollider(){
 		
+		if(this.dustShapeRec.intersects(octopusRef.OctoShapeRec))
+		{
+			
+		   randomPosDust(this.rangeFall);
+		}
 	}
 	
 	
