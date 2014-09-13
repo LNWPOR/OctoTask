@@ -19,10 +19,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 
+
 import Object.Calculator;
 import Object.Dust;
 import Object.HP;
 import Object.Octopus;
+import Object.Telephone;
 
  public class GamePlayState extends BasicGameState{
 
@@ -31,6 +33,7 @@ import Object.Octopus;
 	private int dustCount=10;
 	private Octopus octopusRef;
 	private Calculator calRef;
+	private Telephone phoneRef;
 	
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
@@ -42,6 +45,7 @@ import Object.Octopus;
 		octopusRef = new Octopus();
 		initGame2();
 		initGame3();
+		initGame4();
 	}
 	private void initGame2() throws SlickException {
 		float rangeFall=500;
@@ -55,6 +59,9 @@ import Object.Octopus;
 	private void initGame3() throws SlickException {
 		calRef = new Calculator();
 	}
+	private void initGame4() throws SlickException {
+		phoneRef = new Telephone();
+	}
 
 
 	@Override
@@ -64,10 +71,15 @@ import Object.Octopus;
 		
 		octopusRef.render(g);
 		renderGame3(g);
+		renderGame4(g);
 		renderGame2(g);
 		
 		g.setColor(Color.white);//UI จะได้มีสี
 		g.drawString("HP "+HP.hp, 100, 10);
+	}
+
+	private void renderGame4( Graphics g) {
+		phoneRef.render(g);
 	}
 	private void renderGame2( Graphics g) {
 		for (Dust dust :dusts) {
@@ -83,18 +95,22 @@ import Object.Octopus;
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
 		octopusRef.update(c);
+		
 		updateGame2();
 		updateGame3(c);
-		
+		updateGame4(c);
 		
       
+	}
+
+	private void updateGame4(GameContainer c) {
+		phoneRef.update(c);
 	}
 	private void updateGame2() {
 		for (Dust dust :dusts) {
 			    dust.update();
 			    }
 	}
-
 	private void updateGame3(GameContainer c) {
 		calRef.update(c);
 	}

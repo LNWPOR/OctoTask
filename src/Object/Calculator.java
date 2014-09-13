@@ -30,8 +30,8 @@ public class Calculator {
 		octopusRef = new Octopus();
 		calBoxImg = new Image("res/calBox.png");
 		hpRef = new HP();
-		this.x=octopusRef.returnX()-50;
-		this.y=octopusRef.returnY()-200;
+		this.x=octopusRef.getX()-50;
+		this.y=octopusRef.getY()-200;
 		
 		startCal(rand);
 	}
@@ -40,7 +40,6 @@ public class Calculator {
 		num2=rand.nextInt(30);
 		num3=num1+num2;
 		ansnum=rand.nextInt(3)+1;
-		System.out.println(ansnum);
 		if(ansnum ==1)
 		{
 			ans1 = num3;
@@ -119,11 +118,11 @@ public class Calculator {
 		}
 	}
 	public void MoveLeft(){
-		if(this.x!=0)
+		if(this.x!=-50)
 		this.x-=1;
 	}
 	public void MoveRight(){
-		if(this.x!=GameController.gameWidth-200)
+		if(this.x!=GameController.gameWidth-250)
 		this.x+=1;
 	}
 	

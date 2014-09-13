@@ -46,7 +46,8 @@ public class Dust {
 		this.y=-1;
 		Random rand = new Random();
 		this.y -=rangeFall;
-		this.x= rand.nextFloat()*800;
+		this.x = rand.nextFloat()*800;
+		
 	}
 	public void OnCollider(){
 		

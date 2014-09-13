@@ -56,10 +56,10 @@ public class Octopus {
 		if(this.x!=GameController.gameWidth-200)
 		this.x+=1;
 	}
-	public float returnX(){
+	public float getX(){
 		return this.x;
 }
-	public float returnY(){
+	public float getY(){
 		return this.y;
 }
 }
