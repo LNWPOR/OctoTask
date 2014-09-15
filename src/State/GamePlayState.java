@@ -20,6 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 
+
 import Object.Calculator;
 import Object.Dust;
 import Object.HP;
@@ -30,14 +31,15 @@ import Object.Telephone;
 
 	private Image blackground;
 	private Dust[] dusts;
-	private int dustCount=10;
+	private int dustCount=50;
 	private Octopus octopusRef;
 	private Calculator calRef;
 	private Telephone phoneRef;
-	
+	private HP hpRef;
+	int time;
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
-
+		hpRef = new HP();
 	}
 	
 	@Override
@@ -68,7 +70,7 @@ import Object.Telephone;
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
 		//g.setColor(Color.transparent);//collider จะได้ไม่มีสี
 		blackground.draw(0,0);
-		
+		g.drawString("Time : " + time/1000, 100, 100);
 		octopusRef.render(g);
 		renderGame3(g);
 		renderGame4(g);
@@ -94,13 +96,23 @@ import Object.Telephone;
 
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
+		time += delta;
 		octopusRef.update(c);
 		
 		updateGame2();
 		updateGame3(c);
 		updateGame4(c);
 		
+		checkHP(s);
       
+	}
+
+	private void checkHP(StateBasedGame s) {
+		if(hpRef.hp ==0)
+		{
+			hpRef.hp=3;
+			s.enterState(StateController.Menu);
+		}
 	}
 
 	private void updateGame4(GameContainer c) {
@@ -115,6 +127,7 @@ import Object.Telephone;
 		calRef.update(c);
 	}
 
+	
 	
 
 	
