@@ -2,7 +2,6 @@ package State;
 
 import java.util.LinkedList;
 
-import org.lwjgl.util.Timer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,18 +11,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-
-
-
-
-
-
-
-
-
 import Object.Calculator;
 import Object.Dust;
 import Object.HP;
+import Object.MyClock;
 import Object.Octopus;
 import Object.Telephone;
 
@@ -36,7 +27,7 @@ import Object.Telephone;
 	private Calculator calRef;
 	private Telephone phoneRef;
 	private HP hpRef;
-	int time;
+	private MyClock myClockRef;
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
 		hpRef = new HP();
@@ -45,6 +36,7 @@ import Object.Telephone;
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
 		octopusRef = new Octopus();
+		myClockRef = new MyClock();
 		initGame2();
 		initGame3();
 		initGame4();
@@ -70,7 +62,7 @@ import Object.Telephone;
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
 		//g.setColor(Color.transparent);//collider จะได้ไม่มีสี
 		blackground.draw(0,0);
-		g.drawString("Time : " + time/1000, 100, 100);
+		
 		octopusRef.render(g);
 		renderGame3(g);
 		renderGame4(g);
@@ -78,6 +70,7 @@ import Object.Telephone;
 		
 		g.setColor(Color.white);//UI จะได้มีสี
 		g.drawString("HP "+HP.hp, 100, 10);
+		g.drawString("Time : " + myClockRef.getTime(), 150, 10);
 	}
 
 	private void renderGame4( Graphics g) {
@@ -96,7 +89,7 @@ import Object.Telephone;
 
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
-		time += delta;
+		myClockRef.update(delta);
 		octopusRef.update(c);
 		
 		updateGame2();
