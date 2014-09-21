@@ -53,7 +53,6 @@ public class Dust {
 		
 		if(this.dustShapeRec.intersects(octopusRef.OctoShapeRec))
 		{
-			
 		   randomPosDust(this.rangeFall);
 		}
 	}

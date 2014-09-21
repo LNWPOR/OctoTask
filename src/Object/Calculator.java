@@ -65,6 +65,7 @@ public class Calculator {
 		calBoxImg.draw(this.x,this.y);
 		g.drawString(num1+"+"+num2+"=?", this.x+120, this.y+50);
 		g.drawString("1."+ans1+"  2."+ans2+"  3."+ans3,this.x+80, this.y+80);
+		
 	}
 
 	public void update(GameContainer c) {

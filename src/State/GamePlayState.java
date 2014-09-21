@@ -16,6 +16,7 @@ import Object.Dust;
 import Object.HP;
 import Object.MyClock;
 import Object.Octopus;
+import Object.Seesaw;
 import Object.Telephone;
 
  public class GamePlayState extends BasicGameState{
@@ -28,6 +29,11 @@ import Object.Telephone;
 	private Telephone phoneRef;
 	private HP hpRef;
 	private MyClock myClockRef;
+	private Seesaw seeSawRef; 
+	private boolean startGame2 = false;
+	private boolean startGame3 = false;
+	private boolean startGame4 = false;
+	
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
 		hpRef = new HP();
@@ -37,11 +43,20 @@ import Object.Telephone;
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
 		octopusRef = new Octopus();
 		myClockRef = new MyClock();
+		initGame1(c);
 		initGame2();
 		initGame3();
 		initGame4();
 	}
+
+	private void initGame1(GameContainer c) throws SlickException {
+		seeSawRef = new Seesaw(c);
+	}
 	private void initGame2() throws SlickException {
+		calRef = new Calculator();
+	}
+	private void initGame3() throws SlickException {
+		
 		float rangeFall=500;
 		dusts = new Dust[dustCount];
 	   for(int i =0; i<dustCount;i++)
@@ -49,9 +64,6 @@ import Object.Telephone;
 		  dusts [i] = new Dust(i*rangeFall);
 	     
 	    }
-	}
-	private void initGame3() throws SlickException {
-		calRef = new Calculator();
 	}
 	private void initGame4() throws SlickException {
 		phoneRef = new Telephone();
@@ -61,28 +73,54 @@ import Object.Telephone;
 	@Override
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
 		//g.setColor(Color.transparent);//collider จะได้ไม่มีสี
-		blackground.draw(0,0);
+		//blackground.draw(0,0);
 		
 		octopusRef.render(g);
-		renderGame3(g);
-		renderGame4(g);
-		renderGame2(g);
+		//renderGame3(g);
+		//renderGame4(g);
+		//renderGame2(g);
+		
+		renderGame(g);
 		
 		g.setColor(Color.white);//UI จะได้มีสี
 		g.drawString("HP "+HP.hp, 100, 10);
 		g.drawString("Time : " + myClockRef.getTime(), 150, 10);
 	}
 
+	private void renderGame(Graphics g) {
+		renderGame1(g);
+		if(myClockRef.getTime()>=10 )
+		{
+			renderGame2(g);
+			startGame2=true;
+		}
+		if(myClockRef.getTime()>=20 )
+		{
+			renderGame3(g);
+			startGame3=true;
+		}
+		if(myClockRef.getTime()>=30 )
+		{
+			renderGame4(g);
+			startGame4=true;
+		}
+	}
+
+	private void renderGame1(Graphics g) {
+		seeSawRef.render(g);
+	}
+
 	private void renderGame4( Graphics g) {
 		phoneRef.render(g);
 	}
 	private void renderGame2( Graphics g) {
+		
+		calRef.render(g);
+	}
+	private void renderGame3(Graphics g) {
 		for (Dust dust :dusts) {
 		    dust.render(g);
 		    }
-	}
-	private void renderGame3(Graphics g) {
-		calRef.render(g);
 	}
 
 
@@ -90,34 +128,55 @@ import Object.Telephone;
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
 		myClockRef.update(delta);
-		octopusRef.update(c);
-		
-		updateGame2();
-		updateGame3(c);
-		updateGame4(c);
-		
+		octopusRef.update(c);	
+		updateGame(c,delta);	
 		checkHP(s);
-      
+        
+	}
+
+	private void updateGame(GameContainer c,int delta) {
+		seeSawRef.update(c,delta);
+		if(myClockRef.getTime()>=10)
+		{
+			updateGame2(c);
+			startGame2=true;
+		}
+		if(myClockRef.getTime()>=20 )
+		{
+			updateGame3(c);
+			startGame3=true;
+		}
+		if(myClockRef.getTime()>=30 )
+		{
+			updateGame4(c);
+			startGame4=true;
+		}
 	}
 
 	private void checkHP(StateBasedGame s) {
 		if(hpRef.hp ==0)
 		{
-			hpRef.hp=3;
+			resetGamePlayScene();
 			s.enterState(StateController.Menu);
 		}
+	}
+
+	private void resetGamePlayScene() {
+		hpRef.hp=3;
+		myClockRef.time = 0;
 	}
 
 	private void updateGame4(GameContainer c) {
 		phoneRef.update(c);
 	}
-	private void updateGame2() {
-		for (Dust dust :dusts) {
-			    dust.update();
-			    }
+	private void updateGame2(GameContainer c) {
+		
+		calRef.update(c);
 	}
 	private void updateGame3(GameContainer c) {
-		calRef.update(c);
+		for (Dust dust :dusts) {
+		    dust.update();
+		    }
 	}
 
 	

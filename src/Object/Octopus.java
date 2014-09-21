@@ -15,7 +15,7 @@ public class Octopus {
 
 	private Image octopusImg; //200*200
 	private float x  =GameController.gameWidth/2-100 ;
-	private float y  =GameController.gameHeight/2+20;
+	private float y  =GameController.gameHeight/2+10;
 	public Shape OctoShapeRec;
 	
 	
@@ -57,9 +57,9 @@ public class Octopus {
 		this.x+=1;
 	}
 	public float getX(){
-		return this.x;
+		return x;
 }
 	public float getY(){
-		return this.y;
+		return y;
 }
 }
