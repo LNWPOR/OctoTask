@@ -2,6 +2,14 @@ package State;
 
 import java.util.LinkedList;
 
+import oj.Calculator;
+import oj.Dust;
+import oj.HP;
+import oj.MyClock;
+import oj.Octopus;
+import oj.Seesaw;
+import oj.Telephone;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,14 +18,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
-import Object.Calculator;
-import Object.Dust;
-import Object.HP;
-import Object.MyClock;
-import Object.Octopus;
-import Object.Seesaw;
-import Object.Telephone;
 
  public class GamePlayState extends BasicGameState{
 
@@ -73,7 +73,7 @@ import Object.Telephone;
 	@Override
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
 		//g.setColor(Color.transparent);//collider จะได้ไม่มีสี
-		//blackground.draw(0,0);
+		blackground.draw(0,0);
 		
 		octopusRef.render(g);
 		//renderGame3(g);
@@ -138,7 +138,7 @@ import Object.Telephone;
 		seeSawRef.update(c,delta);
 		if(myClockRef.getTime()>=10)
 		{
-			updateGame2(c);
+			updateGame2(c,delta);
 			startGame2=true;
 		}
 		if(myClockRef.getTime()>=20 )
@@ -169,9 +169,9 @@ import Object.Telephone;
 	private void updateGame4(GameContainer c) {
 		phoneRef.update(c);
 	}
-	private void updateGame2(GameContainer c) {
+	private void updateGame2(GameContainer c,int delta) {
 		
-		calRef.update(c);
+		calRef.update(c,delta);
 	}
 	private void updateGame3(GameContainer c) {
 		for (Dust dust :dusts) {

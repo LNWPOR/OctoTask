@@ -1,4 +1,4 @@
-package Object;
+package oj;
 
 import java.util.Random;
 
@@ -68,12 +68,11 @@ public class Calculator {
 		
 	}
 
-	public void update(GameContainer c) {
-	
+	public void update(GameContainer c,int delta) {
+		this.x = octopusRef.getX()-50;
 		yourAns(c);
-		followOcto(c);
-		
 	}
+	
 	private void yourAns(GameContainer c) {
 		if(ansnum==1)
 		{
@@ -108,25 +107,6 @@ public class Calculator {
 			}
 		}
 	}
-	private void followOcto(GameContainer c) {
-		if(c.getInput().isKeyDown(Input.KEY_A))
-		{
-			MoveLeft();
-		}
-		if(c.getInput().isKeyDown(Input.KEY_D))
-		{
-			MoveRight();
-		}
-	}
-	public void MoveLeft(){
-		if(this.x!=-50)
-		this.x-=1;
-	}
-	public void MoveRight(){
-		if(this.x!=GameController.gameWidth-250)
-		this.x+=1;
-	}
-	
 	
 	
 	

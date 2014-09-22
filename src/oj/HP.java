@@ -1,4 +1,4 @@
-package Object;
+package oj;
 
 public class HP {
 public static int hp = 3;

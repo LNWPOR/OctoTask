@@ -1,4 +1,4 @@
-package Object;
+package oj;
 
 import java.util.Random;
 

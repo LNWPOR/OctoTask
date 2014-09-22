@@ -1,4 +1,4 @@
-package Object;
+package oj;
 
 public class MyClock {
 	public int time =0;

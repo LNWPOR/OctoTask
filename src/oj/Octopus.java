@@ -1,4 +1,4 @@
-package Object;
+package oj;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -14,8 +14,8 @@ import GM.GameController;
 public class Octopus {
 
 	private Image octopusImg; //200*200
-	private float x  =GameController.gameWidth/2-100 ;
-	private float y  =GameController.gameHeight/2+10;
+	private static float x  =GameController.gameWidth/2-100 ;
+	private static float y  =GameController.gameHeight/2+10;
 	public Shape OctoShapeRec;
 	
 	

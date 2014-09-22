@@ -1,5 +1,7 @@
-package Object;
+package oj;
 
+
+import java.awt.Color;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -8,7 +10,9 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+import org.jbox2d.testbed.framework.TestbedPanel;
 import org.jbox2d.testbed.framework.j2d.DebugDrawJ2D;
+import org.jbox2d.testbed.framework.j2d.TestPanelJ2D;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -50,6 +54,7 @@ public class Seesaw {
 		FixtureDef recFD;
 	//-------
 		
+		
 	public Seesaw(GameContainer c) throws SlickException{
 		
 		world = new World(gravity);
@@ -71,7 +76,7 @@ public class Seesaw {
 		ballBD.position.set(bx,by);
 		ballB = world.createBody(ballBD);
 		ballPolygon = new PolygonShape();
-		ballPolygon.setAsBox(1.0f, 1.0f);// 30 pixel = 1 meter
+		ballPolygon.setAsBox(40, 40);// 30 pixel = 1 meter
 		ballFD = new FixtureDef();
 		ballFD.shape = ballPolygon;
 		ballFD.density = 1;
@@ -98,26 +103,25 @@ public class Seesaw {
 		triangleImg.draw(tx, ty);
 		ballImg.draw(ballB.getPosition().x,ballB.getPosition().y);
 		
-		
-		
 	}
 	public void update(GameContainer c,int delta){
 		
-		 
+		
 		
 		if(c.getInput().isKeyDown(Input.KEY_LEFT)&&rectangleImg.getRotation()>=-20){
 			
 			rectangleImg.rotate((float) -0.3);
-			recB.setAngularVelocity(-0.1f);
-			//ballB.applyAngularImpulse(-20);
+	
+			
 			System.out.println(ballB.getAngularVelocity());
 		
 		}
 		if(c.getInput().isKeyDown(Input.KEY_RIGHT)&&rectangleImg.getRotation() <=20){
 			
 			rectangleImg.rotate((float) +0.3);
-			recB.setAngularVelocity(0.1f);
+			
 		}
+		
 		world.step(timeStep, velocityIterations, positionIterations);
 		
 		
