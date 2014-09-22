@@ -75,7 +75,8 @@ public class Telephone {
 	}
 	public void update(GameContainer c){
 		selectPhone(c);
-		followOcto(c);
+		this.sx = octopusRef.getX()+170;
+		
 	}
 	
 	public void selectPhone(GameContainer c){
@@ -88,30 +89,7 @@ public class Telephone {
 			yourPhone+=1;
 			
 		}
-		
-		
-		
 	}
-	
-	private void followOcto(GameContainer c) {
-		if(c.getInput().isKeyDown(Input.KEY_A))
-		{
-			MoveLeft();
-		}
-		if(c.getInput().isKeyDown(Input.KEY_D))
-		{
-			MoveRight();
-		}
-	}
-	public void MoveLeft(){
-		if(this.sx!=180)
-		this.sx-=1;
-	}
-	public void MoveRight(){
-		if(this.sx!=GameController.gameWidth-30)
-		this.sx+=1;
-	}
-	
 	
 	
 }
