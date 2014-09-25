@@ -16,7 +16,7 @@ public class Octopus {
 	private Image octopusImg; //200*200
 	private static float x  =GameController.gameWidth/2-100 ;
 	private static float y  =GameController.gameHeight/2+10;
-	public Shape OctoShapeRec;
+	public static Shape OctoShapeRec;
 	
 	
 
