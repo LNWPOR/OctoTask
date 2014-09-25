@@ -2,6 +2,7 @@ package oj;
 
 import java.util.Random;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -68,6 +69,7 @@ public class Calculator {
 	{
 	
 		calBoxImg.draw(this.x,this.y);
+		g.setColor(Color.white);
 		g.drawString(num1+"+"+num2+"=?", this.x+120, this.y+50);
 		g.drawString("1."+ans1+"  2."+ans2+"  3."+ans3,this.x+80, this.y+80);
 		g.drawString( calTime+"", this.x+140, this.y+120);

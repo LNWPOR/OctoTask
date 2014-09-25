@@ -113,7 +113,7 @@ public class Seesaw {
 			rectangleImg.rotate((float) -0.3);
 	
 			
-			System.out.println(ballB.getAngularVelocity());
+			
 		
 		}
 		if(c.getInput().isKeyDown(Input.KEY_RIGHT)&&rectangleImg.getRotation() <=20){

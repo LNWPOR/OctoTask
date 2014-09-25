@@ -26,7 +26,7 @@ public class Octopus {
 	}
 	
 	public void render(Graphics g){
-
+		g.setColor(Color.transparent);
 		g.draw(OctoShapeRec);
 		octopusImg.draw(x ,y);
 		

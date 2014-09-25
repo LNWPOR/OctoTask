@@ -1,6 +1,8 @@
 package oj;
 
 import java.util.Random;
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -29,6 +31,7 @@ public class Dust {
 	}
 	
 	public void render(Graphics g){
+		g.setColor(Color.transparent);
 		g.draw(dustShapeRec);
 		dustImg.draw(this.x,this.y);
 		
