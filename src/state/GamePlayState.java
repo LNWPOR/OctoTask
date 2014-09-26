@@ -1,4 +1,4 @@
-package State;
+package state;
 
 import java.util.LinkedList;
 
@@ -7,7 +7,7 @@ import oj.Dust;
 import oj.HP;
 import oj.MyClock;
 import oj.Octopus;
-import oj.Seesaw;
+
 import oj.Telephone;
 
 import org.newdawn.slick.Color;
@@ -29,7 +29,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	private Telephone phoneRef;
 	private HP hpRef;
 	private MyClock myClockRef;
-	private Seesaw seeSawRef; 
+
 	private boolean startGame2 = false;
 	private boolean startGame3 = false;
 	private boolean startGame4 = false;
@@ -50,7 +50,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 
 	private void initGame1(GameContainer c) throws SlickException {
-		seeSawRef = new Seesaw(c);
+
 	}
 	private void initGame2() throws SlickException {
 		calRef = new Calculator();
@@ -107,7 +107,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 
 	private void renderGame1(Graphics g) {
-		seeSawRef.render(g);
+
 	}
 
 	private void renderGame4( Graphics g) {
@@ -135,7 +135,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 
 	private void updateGame(GameContainer c,int delta) {
-		seeSawRef.update(c,delta);
+		
 		if(myClockRef.getTime()>=10)
 		{
 			updateGame2(c,delta);

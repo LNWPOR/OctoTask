@@ -1,4 +1,4 @@
-package GM;
+package gm;
 
 import java.util.concurrent.ExecutionException;
 
@@ -7,8 +7,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.*;
 
-import State.GamePlayState;
-import State.MenuState;
+import state.GamePlayState;
+import state.MenuState;
 
 public class GameController extends StateBasedGame{
     public static int gameWidth=1024;

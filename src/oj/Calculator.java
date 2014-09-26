@@ -1,5 +1,7 @@
 package oj;
 
+import gm.GameController;
+
 import java.util.Random;
 
 import org.newdawn.slick.Color;
@@ -8,8 +10,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-
-import GM.GameController;
 
 
 public class Calculator {
