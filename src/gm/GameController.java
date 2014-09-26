@@ -1,6 +1,6 @@
 package gm;
 
-import java.util.concurrent.ExecutionException;
+
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -18,11 +18,11 @@ public class GameController extends StateBasedGame{
     
 	public GameController(String name) {
 		super(name);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	
 		try{
 			AppGameContainer app  = new AppGameContainer(new GameController("OctoTask"));
 			app.setDisplayMode(gameWidth,gameHeight, false);

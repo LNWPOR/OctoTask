@@ -2,7 +2,7 @@ package oj;
 
 import java.util.Random;
 
-import org.newdawn.slick.Color;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -31,8 +31,7 @@ public class Dust {
 	}
 	
 	public void render(Graphics g){
-		g.setColor(Color.transparent);
-		g.draw(dustShapeRec);
+	
 		dustImg.draw(this.x,this.y);
 		
 	}
@@ -54,7 +53,7 @@ public class Dust {
 	}
 	public void OnCollider(){
 		
-		if(this.dustShapeRec.intersects(octopusRef.OctoShapeRec))
+		if(this.dustShapeRec.intersects(octopusRef.octoShapeRec))
 		{
 		   randomPosDust(this.rangeFall);
 		}

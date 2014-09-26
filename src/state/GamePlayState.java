@@ -1,20 +1,18 @@
 package state;
 
-import java.util.LinkedList;
-
 import oj.Calculator;
 import oj.Dust;
 import oj.HP;
 import oj.MyClock;
 import oj.Octopus;
-
+import oj.Rat_Black;
+import oj.Rat_White;
 import oj.Telephone;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -29,10 +27,8 @@ import org.newdawn.slick.state.StateBasedGame;
 	private Telephone phoneRef;
 	private HP hpRef;
 	private MyClock myClockRef;
-
-	private boolean startGame2 = false;
-	private boolean startGame3 = false;
-	private boolean startGame4 = false;
+	private Rat_White ratWhiteRef;
+	private Rat_Black ratBlackRef;
 	
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
@@ -43,14 +39,15 @@ import org.newdawn.slick.state.StateBasedGame;
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
 		octopusRef = new Octopus();
 		myClockRef = new MyClock();
-		initGame1(c);
+		initGame1();
 		initGame2();
 		initGame3();
 		initGame4();
 	}
 
-	private void initGame1(GameContainer c) throws SlickException {
-
+	private void initGame1() throws SlickException {
+		ratWhiteRef = new Rat_White();
+		ratBlackRef = new Rat_Black();
 	}
 	private void initGame2() throws SlickException {
 		calRef = new Calculator();
@@ -72,7 +69,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 	@Override
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
-		//g.setColor(Color.transparent);//collider จะได้ไม่มีสี
+		
 		blackground.draw(0,0);
 		
 		octopusRef.render(g);
@@ -92,22 +89,20 @@ import org.newdawn.slick.state.StateBasedGame;
 		if(myClockRef.getTime()>=10 )
 		{
 			renderGame2(g);
-			startGame2=true;
 		}
 		if(myClockRef.getTime()>=20 )
 		{
 			renderGame3(g);
-			startGame3=true;
 		}
 		if(myClockRef.getTime()>=30 )
 		{
 			renderGame4(g);
-			startGame4=true;
 		}
 	}
 
 	private void renderGame1(Graphics g) {
-
+		ratWhiteRef.render(g);
+		ratBlackRef.render(g);
 	}
 
 	private void renderGame4( Graphics g) {
@@ -123,8 +118,6 @@ import org.newdawn.slick.state.StateBasedGame;
 		    }
 	}
 
-
-
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
 		myClockRef.update(delta);
@@ -136,21 +129,27 @@ import org.newdawn.slick.state.StateBasedGame;
 
 	private void updateGame(GameContainer c,int delta) {
 		
+		updateGame1();
 		if(myClockRef.getTime()>=10)
 		{
 			updateGame2(c,delta);
-			startGame2=true;
+		
 		}
 		if(myClockRef.getTime()>=20 )
 		{
 			updateGame3(c);
-			startGame3=true;
+			
 		}
 		if(myClockRef.getTime()>=30 )
 		{
 			updateGame4(c);
-			startGame4=true;
+			
 		}
+	}
+
+	private void updateGame1() {
+		ratWhiteRef.update();
+		ratBlackRef.update();
 	}
 
 	private void checkHP(StateBasedGame s) {

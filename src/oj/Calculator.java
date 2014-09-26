@@ -1,7 +1,5 @@
 package oj;
 
-import gm.GameController;
-
 import java.util.Random;
 
 import org.newdawn.slick.Color;

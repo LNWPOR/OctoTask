@@ -2,7 +2,7 @@ package oj;
 
 import gm.GameController;
 
-import org.newdawn.slick.Color;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -16,24 +16,23 @@ public class Octopus {
 	private Image octopusImg; //200*200
 	private static float x  =GameController.gameWidth/2-100 ;
 	private static float y  =GameController.gameHeight/2+10;
-	public static Shape OctoShapeRec;
+	public static Shape octoShapeRec;
 	
 	
 
 	public Octopus() throws SlickException{
 		octopusImg =  new Image("res/Octopus2.png");
-		OctoShapeRec  = new Rectangle(this.x,this.y,200,200);
+		octoShapeRec  = new Rectangle(this.x,this.y,200,200);
 	}
 	
 	public void render(Graphics g){
-		g.setColor(Color.transparent);
-		g.draw(OctoShapeRec);
+	
 		octopusImg.draw(x ,y);
 		
 	}
 
 	public void update(GameContainer c){
-		OctoShapeRec.setLocation(x, y);
+		octoShapeRec.setLocation(x, y);
 		OctoMoveSet2(c);
 		
 	}
