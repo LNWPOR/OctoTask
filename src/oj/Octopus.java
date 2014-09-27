@@ -33,8 +33,6 @@ public class Octopus {
 
 	public void update(GameContainer c){
 		octoShapeRec.setLocation(x, y);
-		//OctoMoveSet2(c);
-		
 	}
 	
 	public void OctoMoveSet2(GameContainer c){

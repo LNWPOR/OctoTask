@@ -33,12 +33,12 @@ import org.newdawn.slick.state.StateBasedGame;
 	//----------------------
 	private Telephone phoneRef;
 	private HP hpRef;
-	private int maxHP=10;
+	private int maxHP=5;
 	//----------------------
 	public static int score =0;
 	//----------------------
 	private MyClock myClockRef;
-	private int maxtimeIncreaseHP=10;
+	private int maxtimeIncreaseHP=15;
 	private int timeIncreaseHP = maxtimeIncreaseHP;
 	private int startTimeGame2=10;
 	private int startTimeGame3=20;
@@ -110,9 +110,11 @@ import org.newdawn.slick.state.StateBasedGame;
 	private void drawTutorial(Graphics g) {
 		if(myClockRef.getTime()<tutorTime)
 		{
-			g.fillRect(250,80, 530,50);
+			g.fillRect(250,80, 530,70);
 			g.setColor(Color.red);
 			g.drawString("Objective1: Answer the algorithm by 1 , 2 or 3 button",275, 100);
+			g.setColor(Color.black);
+			g.drawString("(HP will +1 every 15 sec if you survive :P)", 325, 120);
 		}
 		else if(myClockRef.getTime()>=startTimeGame2 && myClockRef.getTime()- startTimeGame2 < tutorTime)
 		{
