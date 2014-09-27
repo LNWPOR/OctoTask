@@ -123,7 +123,7 @@ public class Telephone {
 		
 		if(yourPhone!= comingPhone)
 		{
-			timeForNextCall=MaxtTimeForNextCall;
+			
 			limitComingPhoneTime -= myClockRef.getOneSec();
 			if(limitComingPhoneTime <0)
 			{

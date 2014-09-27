@@ -1,5 +1,6 @@
 package state;
 
+import gm.GameController;
 import oj.AtkRat;
 import oj.Calculator;
 import oj.Dust;
@@ -36,6 +37,11 @@ import org.newdawn.slick.state.StateBasedGame;
 	private MyClock myClockRef;
 	private int maxtimeIncreaseHP=10;
 	private int timeIncreaseHP = maxtimeIncreaseHP;
+	private int startTimeGame2=10;
+	private int startTimeGame3=20;
+	private int startTimeGame4=30;
+	private int tutorTime = 5;
+	
 	
 	//----------------------
 	private Rat_White ratWhiteRef;
@@ -92,19 +98,49 @@ import org.newdawn.slick.state.StateBasedGame;
 		g.setColor(Color.white);//UI จะได้มีสี
 		g.drawString("HP "+HP.hp, 100, 10);
 		g.drawString("Time : " + myClockRef.getTime(), 150, 10);
+		
+		drawTutorial(g);
+		
+	}
+
+	private void drawTutorial(Graphics g) {
+		if(myClockRef.getTime()<tutorTime)
+		{
+			g.fillRect(250,80, 530,50);
+			g.setColor(Color.red);
+			g.drawString("Objective1: Answer the algorithm by 1 , 2 or 3 button",275, 100);
+		}
+		else if(myClockRef.getTime()>=startTimeGame2 && myClockRef.getTime()- startTimeGame2 < tutorTime)
+		{
+			g.fillRect(175,80, 770,50);
+			g.setColor(Color.red);
+			g.drawString("Objective2: Defend your house from rat by attacking them with left or right click",200, 100);
+		}
+		else if(myClockRef.getTime()>=startTimeGame3 && myClockRef.getTime()- startTimeGame3 < tutorTime)
+		{
+			g.fillRect(175,80, 740,50);
+			g.setColor(Color.red);
+			g.drawString("Objective3: Clean the falling dust by collecting them with A,D button to move",200, 100);
+		}
+		else if(myClockRef.getTime()>=startTimeGame4 && myClockRef.getTime()- startTimeGame4 < tutorTime)
+		{
+			g.fillRect(150,80, 720,50);
+			g.setColor(Color.red);
+			g.drawString("Objective4: Answer the telephone by matching the phone with SPACEBAR button",180, 100);
+		}
 	}
 
 	private void renderGame(Graphics g) {
 		renderGame1(g);
-		if(myClockRef.getTime()>=10 )
+		if(myClockRef.getTime()>=startTimeGame2 )
 		{
 			renderGame2(g);
 		}
-		if(myClockRef.getTime()>=20 )
+		if(myClockRef.getTime()>=startTimeGame3 )
 		{
 			renderGame3(g);
 		}
-		if(myClockRef.getTime()>=30 )
+		if(myClockRef.getTime()>=startTimeGame4 )
 		{
 			renderGame4(g);
 		}
@@ -154,17 +190,17 @@ import org.newdawn.slick.state.StateBasedGame;
 	private void updateGame(GameContainer c,int delta) {
 		
 		updateGame1(c,delta);
-		if(myClockRef.getTime()>=10)
+		if(myClockRef.getTime()>=startTimeGame2)
 		{
 			updateGame2(c,delta);
 		
 		}
-		if(myClockRef.getTime()>=20 )
+		if(myClockRef.getTime()>=startTimeGame3 )
 		{
 			updateGame3(c);
 			
 		}
-		if(myClockRef.getTime()>=30 )
+		if(myClockRef.getTime()>=startTimeGame4 )
 		{
 			updateGame4(c,delta);
 			
