@@ -12,4 +12,8 @@ public class MyClock {
 	public void update(int delta){
 		this.time += delta;
 	}
+	
+	public void setCurrentTime(){
+		currentTime = time/1000;
+	}
 }

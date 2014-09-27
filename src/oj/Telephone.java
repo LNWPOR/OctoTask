@@ -142,7 +142,7 @@ public class Telephone {
 			}
 		}
 
-		myClockRef.currentTime =myClockRef.getTime();
+		myClockRef.setCurrentTime();
 	}
 	
 	public void selectPhone(GameContainer c){

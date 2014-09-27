@@ -87,7 +87,8 @@ public class Calculator {
 			hpRef.HpDamage();
 			calTime =maxCalTime;
 		}
-		myClockRef.currentTime = myClockRef.getTime();
+	
+			myClockRef.setCurrentTime();
 	}
 	
 	private void checkYourAns(GameContainer c) {

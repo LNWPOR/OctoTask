@@ -179,7 +179,7 @@ import org.newdawn.slick.state.StateBasedGame;
 		
 		octopusRef.update(c);	
 		updateGame(c,delta);	
-		checkHP(s);
+		checkHP(s,c);
 		score+=Math.abs(myClockRef.getOneSec());
 	}
 
@@ -219,9 +219,11 @@ import org.newdawn.slick.state.StateBasedGame;
 		calRef.update(c,delta);
 	}
 
-	private void checkHP(StateBasedGame s) {
+	private void checkHP(StateBasedGame s,GameContainer c) throws SlickException {
 		if(hpRef.hp ==0)
 		{
+			c.reinit();
+			
 			resetGamePlayScene();
 			s.enterState(StateController.GameOver);
 		}

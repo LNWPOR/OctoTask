@@ -22,6 +22,8 @@ public class Octopus {
 
 	public Octopus() throws SlickException{
 		octopusImg =  new Image("res/Octopus2.png");
+		x  =GameController.gameWidth/2-100 ;
+		y  =GameController.gameHeight/2+10;
 		octoShapeRec  = new Rectangle(this.x,this.y,200,200);
 	}
 	
