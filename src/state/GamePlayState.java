@@ -33,6 +33,9 @@ import org.newdawn.slick.state.StateBasedGame;
 	//----------------------
 	private Telephone phoneRef;
 	private HP hpRef;
+	private int maxHP=10;
+	//----------------------
+	public static int score =0;
 	//----------------------
 	private MyClock myClockRef;
 	private int maxtimeIncreaseHP=10;
@@ -52,6 +55,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
 		hpRef = new HP();
+		HP.hp = maxHP;
 	}
 	
 	@Override
@@ -174,7 +178,7 @@ import org.newdawn.slick.state.StateBasedGame;
 		octopusRef.update(c);	
 		updateGame(c,delta);	
 		checkHP(s);
-        
+		score+=Math.abs(myClockRef.getOneSec());
 	}
 
 	private void checkTimeIncreaseHP() {
@@ -184,6 +188,7 @@ import org.newdawn.slick.state.StateBasedGame;
 			hpRef.HpIncrease();
 			timeIncreaseHP=maxtimeIncreaseHP;
 		}
+	
 		myClockRef.currentTime = myClockRef.getTime();
 	}
 
@@ -216,12 +221,12 @@ import org.newdawn.slick.state.StateBasedGame;
 		if(hpRef.hp ==0)
 		{
 			resetGamePlayScene();
-			s.enterState(StateController.Menu);
+			s.enterState(StateController.GameOver);
 		}
 	}
 
 	private void resetGamePlayScene() {
-		hpRef.hp=3;
+		hpRef.hp=maxHP;
 		myClockRef.time = 0;
 	}
 

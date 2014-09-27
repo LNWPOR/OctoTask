@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.*;
 
+import state.GameOverState;
 import state.GamePlayState;
 import state.MenuState;
 
@@ -39,6 +40,7 @@ public class GameController extends StateBasedGame{
 		// TODO Auto-generated method stub
 		this.addState(new MenuState());
 		this.addState(new GamePlayState());
+		this.addState(new GameOverState());
 	}
 
 }
