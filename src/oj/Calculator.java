@@ -26,9 +26,8 @@ public class Calculator {
 	private int ans3;
 	Random rand = new Random();
 	private MyClock myClockRef;
-	private int currenTime=0;
-	private int firstCalTime = 6;
-	private int calTime = firstCalTime ;
+	private int maxCalTime = 6;
+	private int calTime = maxCalTime ;
 	
 	public Calculator() throws SlickException{
 		octopusRef = new Octopus();
@@ -81,14 +80,14 @@ public class Calculator {
 	}
 	private void checkTime(int delta) {
 		myClockRef.update(delta);
-		calTime-=  myClockRef.getTime()-currenTime;
+		calTime-=  myClockRef.getOneSec();
 		
 		if(calTime<0)
 		{
 			hpRef.HpDamage();
-			calTime =firstCalTime;
+			calTime =maxCalTime;
 		}
-		currenTime = myClockRef.getTime();
+		myClockRef.currentTime = myClockRef.getTime();
 	}
 	
 	private void checkYourAns(GameContainer c) {
@@ -97,7 +96,7 @@ public class Calculator {
 		if(c.getInput().isKeyPressed(Input.KEY_1))
 		{
 			startCal(rand);
-			calTime =firstCalTime;
+			calTime =maxCalTime;
 		}else if(c.getInput().isKeyPressed(Input.KEY_2)||c.getInput().isKeyPressed(Input.KEY_3))
 			{
 			hpRef.HpDamage();
@@ -109,7 +108,7 @@ public class Calculator {
 		if(c.getInput().isKeyPressed(Input.KEY_2))
 		{
 			startCal(rand);
-			calTime =firstCalTime;
+			calTime =maxCalTime;
 		}else if(c.getInput().isKeyPressed(Input.KEY_1)||c.getInput().isKeyPressed(Input.KEY_3))
 			{
 			hpRef.HpDamage();
@@ -121,7 +120,7 @@ public class Calculator {
 		if(c.getInput().isKeyPressed(Input.KEY_3))
 		{
 			startCal(rand);
-			calTime =firstCalTime;
+			calTime =maxCalTime;
 		}else if(c.getInput().isKeyPressed(Input.KEY_1)||c.getInput().isKeyPressed(Input.KEY_2))
 			{
 			hpRef.HpDamage();

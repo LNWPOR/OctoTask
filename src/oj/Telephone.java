@@ -4,6 +4,7 @@ import gm.GameController;
 
 import java.util.Random;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -32,7 +33,15 @@ public class Telephone {
 	private float sx;
 	private float sy;
 	Random rand = new Random();
+	//------------------------------
+	private MyClock myClockRef;
+	private int maxLimitComingPhoneTime = 10;
+	private int limitComingPhoneTime = maxLimitComingPhoneTime;
 	
+	private int MaxtTimeForNextCall = 5;
+	private int timeForNextCall = MaxtTimeForNextCall;
+	//------------------------------
+	private HP hpRef;
 	public Telephone() throws SlickException{
 		smallPhoneImg1 = new Image("res/smallBlackPhone2.png");
 		smallPhoneImg2 = new Image("res/smallGreenPhone2.png");
@@ -45,15 +54,44 @@ public class Telephone {
 		bigPhoneImg4 = new Image("res/bigYellowPhone.png");
 		
 		octopusRef = new Octopus();
+		myClockRef = new MyClock();
 		
 		this.bx = GameController.gameWidth-220;
 		this.by = 0;
 		this.sx = octopusRef.getX()+170;
 		this.sy = octopusRef.getY()-50;
+		
+		randComingPhone();
+		
+		hpRef = new HP();
+	}
+	private void randComingPhone() {
+		comingPhone=rand.nextInt(3)+1;
 	}
 	public void render( Graphics g){
 		changePhone();
+		changeComingPhone();
+		g.setColor(Color.red);
+		g.drawString(" "+limitComingPhoneTime, sx+100, sy);
+	}
+	private void changeComingPhone() {
 		smallPhoneImg1.draw(sx,sy);
+		if(comingPhone==1 )
+		{
+			smallPhoneImg1.draw(sx,sy);
+		}
+		if(comingPhone==2)
+		{
+			smallPhoneImg2.draw(sx,sy);
+		}
+		if(comingPhone==3)
+		{
+			smallPhoneImg3.draw(sx,sy);
+		}
+		if(comingPhone==4)
+		{
+			smallPhoneImg4.draw(sx,sy);
+		}
 	}
 	private void changePhone() {
 		if(yourPhone==1 )
@@ -73,10 +111,38 @@ public class Telephone {
 			bigPhoneImg4.draw(bx,by);
 		}
 	}
-	public void update(GameContainer c){
+	public void update(GameContainer c,int delta){
+		checkLimitComingPhone(delta);
 		selectPhone(c);
 		this.sx = octopusRef.getX()+170;
 		
+	}
+	private void checkLimitComingPhone(int delta) {
+		myClockRef.update(delta);
+
+		
+		if(yourPhone!= comingPhone)
+		{
+			timeForNextCall=MaxtTimeForNextCall;
+			limitComingPhoneTime -= myClockRef.getOneSec();
+			if(limitComingPhoneTime <0)
+			{
+				hpRef.HpDamage();
+				limitComingPhoneTime =maxLimitComingPhoneTime;
+				randComingPhone();
+			}
+		}else
+		{
+			timeForNextCall -= myClockRef.getOneSec();
+			if(timeForNextCall <0)
+			{
+				randComingPhone();
+				limitComingPhoneTime =maxLimitComingPhoneTime;
+				timeForNextCall=MaxtTimeForNextCall;
+			}
+		}
+
+		myClockRef.currentTime =myClockRef.getTime();
 	}
 	
 	public void selectPhone(GameContainer c){

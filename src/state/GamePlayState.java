@@ -151,7 +151,7 @@ import org.newdawn.slick.state.StateBasedGame;
 		}
 		if(myClockRef.getTime()>=30 )
 		{
-			updateGame4(c);
+			updateGame4(c,delta);
 			
 		}
 	}
@@ -174,8 +174,8 @@ import org.newdawn.slick.state.StateBasedGame;
 		myClockRef.time = 0;
 	}
 
-	private void updateGame4(GameContainer c) {
-		phoneRef.update(c);
+	private void updateGame4(GameContainer c,int delta) {
+		phoneRef.update(c,delta);
 	}
 	private void updateGame2(GameContainer c,int delta) {
 		
