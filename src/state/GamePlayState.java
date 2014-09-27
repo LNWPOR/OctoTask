@@ -1,5 +1,6 @@
 package state;
 
+import oj.AtkRat;
 import oj.Calculator;
 import oj.Dust;
 import oj.HP;
@@ -13,6 +14,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -20,16 +22,24 @@ import org.newdawn.slick.state.StateBasedGame;
  public class GamePlayState extends BasicGameState{
 
 	private Image blackground;
+	//----------------------
 	private Dust[] dusts;
 	private int dustCount=50;
+	//----------------------
 	private Octopus octopusRef;
+	//----------------------
 	private Calculator calRef;
+	//----------------------
 	private Telephone phoneRef;
 	private HP hpRef;
+	//----------------------
 	private MyClock myClockRef;
+	//----------------------
 	private Rat_White ratWhiteRef;
 	private Rat_Black ratBlackRef;
-	
+	//----------------------
+	private AtkRat atkRef;
+	//----------------------
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
 		hpRef = new HP();
@@ -48,6 +58,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	private void initGame1() throws SlickException {
 		ratWhiteRef = new Rat_White();
 		ratBlackRef = new Rat_Black();
+		atkRef = new AtkRat();
 	}
 	private void initGame2() throws SlickException {
 		calRef = new Calculator();
@@ -103,6 +114,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	private void renderGame1(Graphics g) {
 		ratWhiteRef.render(g);
 		ratBlackRef.render(g);
+		atkRef.render();
 	}
 
 	private void renderGame4( Graphics g) {
@@ -129,7 +141,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 	private void updateGame(GameContainer c,int delta) {
 		
-		updateGame1();
+		updateGame1(c);
 		if(myClockRef.getTime()>=10)
 		{
 			updateGame2(c,delta);
@@ -147,9 +159,10 @@ import org.newdawn.slick.state.StateBasedGame;
 		}
 	}
 
-	private void updateGame1() {
-		ratWhiteRef.update();
-		ratBlackRef.update();
+	private void updateGame1(GameContainer c) {
+		ratWhiteRef.update(c);
+		ratBlackRef.update(c);
+		atkRef.update(c);
 	}
 
 	private void checkHP(StateBasedGame s) {
