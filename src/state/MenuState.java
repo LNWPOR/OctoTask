@@ -2,6 +2,7 @@ package state;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -9,17 +10,17 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MenuState extends BasicGameState{
 
+	private Image menuBGImg;
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
-		
+		menuBGImg = new Image("res/menuBG.png");
 		
 	}
 
 	@Override
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
-		g.drawString("1-Play", 512, 340);
-		g.drawString("2-Custom", 512, 360);
-		g.drawString("3-Ranking", 512, 380);
+		menuBGImg.draw(0, 0);
+
 	}
 
 	@Override

@@ -95,7 +95,7 @@ import org.newdawn.slick.state.StateBasedGame;
 		
 		renderGame(g);
 		
-		g.setColor(Color.white);//UI จะได้มีสี
+		g.setColor(Color.white);
 		g.drawString("HP "+HP.hp, 100, 10);
 		g.drawString("Time : " + myClockRef.getTime(), 150, 10);
 		
