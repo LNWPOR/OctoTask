@@ -34,6 +34,9 @@ import org.newdawn.slick.state.StateBasedGame;
 	private HP hpRef;
 	//----------------------
 	private MyClock myClockRef;
+	private int maxtimeIncreaseHP=10;
+	private int timeIncreaseHP = maxtimeIncreaseHP;
+	
 	//----------------------
 	private Rat_White ratWhiteRef;
 	private Rat_Black ratBlackRef;
@@ -130,10 +133,22 @@ import org.newdawn.slick.state.StateBasedGame;
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
 		myClockRef.update(delta);
+		checkTimeIncreaseHP();
+		
 		octopusRef.update(c);	
 		updateGame(c,delta);	
 		checkHP(s);
         
+	}
+
+	private void checkTimeIncreaseHP() {
+		timeIncreaseHP-=myClockRef.getOneSec();
+		if(timeIncreaseHP<0)
+		{
+			hpRef.HpIncrease();
+			timeIncreaseHP=maxtimeIncreaseHP;
+		}
+		myClockRef.currentTime = myClockRef.getTime();
 	}
 
 	private void updateGame(GameContainer c,int delta) {
