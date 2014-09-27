@@ -1,5 +1,6 @@
 package state;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -18,7 +19,7 @@ public class GameOverState extends BasicGameState{
 
 	@Override
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
-		
+		g.setColor(Color.red);
 		g.drawString("Your score is "+GamePlayState.score, 500,300);
 		g.drawString("KAK mak mak eiei :P", 500, 375);
 		g.drawString("1-Menu", 500, 450);
