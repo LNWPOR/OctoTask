@@ -71,7 +71,7 @@ public class AtkRat {
 		{
 			isAtkLeft = true;
 		}
-		if(c.getInput().isMouseButtonDown(1))
+		else if(c.getInput().isMouseButtonDown(1))
 		{
 			isAtkRight = true;
 		}

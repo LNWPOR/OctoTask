@@ -46,8 +46,8 @@ public class Telephone {
 		
 		octopusRef = new Octopus();
 		
-		this.bx = 0;
-		this.by = GameController.gameHeight-220;
+		this.bx = GameController.gameWidth-220;
+		this.by = 0;
 		this.sx = octopusRef.getX()+170;
 		this.sy = octopusRef.getY()-50;
 	}

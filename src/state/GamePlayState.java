@@ -24,7 +24,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	private Image blackground;
 	//----------------------
 	private Dust[] dusts;
-	private int dustCount=50;
+	private int dustCount=10;
 	//----------------------
 	private Octopus octopusRef;
 	//----------------------
@@ -185,7 +185,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 	private void updateGame3(GameContainer c) {
 		for (Dust dust :dusts) {
-		    dust.update();
+		    dust.update(c);
 		    }
 	}
 

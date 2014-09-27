@@ -1,8 +1,13 @@
 package oj;
 
+import gm.GameController;
+
 import java.util.Random;
 
 
+
+
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -16,10 +21,11 @@ public class Dust {
 	private Image dustImg; //60*60
 	private float x;
 	private float y;
-	private float speedFallDown = (float) 0.5;
+	private float speedFallDown = (float) 0.3;
 	private Octopus octopusRef ;
 	private float rangeFall;
 	private Shape dustShapeRec;
+	private HP hpRef;
 	
 	public Dust(float rangeFall) throws SlickException{
 		this.rangeFall=rangeFall;
@@ -27,7 +33,7 @@ public class Dust {
 		dustImg = new Image("res/Dust2.png");
 		dustShapeRec = new Rectangle(this.x,this.y,60,60);
 		octopusRef = new Octopus();
-		
+		hpRef = new HP();
 	}
 	
 	public void render(Graphics g){
@@ -36,11 +42,11 @@ public class Dust {
 		
 	}
 	
-	public void update(){
+	public void update(GameContainer c){
 		this.y+=speedFallDown;
 		dustShapeRec.setLocation(this.x, this.y);
 		OnCollider();
-		
+		octopusRef.OctoMoveSet2(c);
 		
 	}
 	
@@ -56,6 +62,11 @@ public class Dust {
 		if(this.dustShapeRec.intersects(octopusRef.octoShapeRec))
 		{
 		   randomPosDust(this.rangeFall);
+		}
+		if(this.y == GameController.gameHeight)
+		{
+			hpRef.HpDamage();
+			randomPosDust(this.rangeFall);
 		}
 	}
 	

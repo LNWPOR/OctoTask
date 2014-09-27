@@ -33,7 +33,7 @@ public class Octopus {
 
 	public void update(GameContainer c){
 		octoShapeRec.setLocation(x, y);
-		OctoMoveSet2(c);
+		//OctoMoveSet2(c);
 		
 	}
 	
@@ -49,11 +49,11 @@ public class Octopus {
 	}
 	public void MoveLeft(){
 		if(this.x!=0)
-		this.x-=1;
+		this.x-=0.1;// 0.1 to slow speed of octopus which idk why it go so fast
 	}
 	public void MoveRight(){
 		if(this.x!=GameController.gameWidth-200)
-		this.x+=1;
+		this.x+=0.1;
 	}
 	public float getX(){
 		return x;
