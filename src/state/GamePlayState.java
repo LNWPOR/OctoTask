@@ -56,12 +56,12 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 
 	private void initGame1() throws SlickException {
+		calRef = new Calculator();
+	}
+	private void initGame2() throws SlickException {
 		ratWhiteRef = new Rat_White();
 		ratBlackRef = new Rat_Black();
 		atkRef = new AtkRat();
-	}
-	private void initGame2() throws SlickException {
-		calRef = new Calculator();
 	}
 	private void initGame3() throws SlickException {
 		
@@ -82,11 +82,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
 		
 		blackground.draw(0,0);
-		
 		octopusRef.render(g);
-		//renderGame3(g);
-		//renderGame4(g);
-		//renderGame2(g);
 		
 		renderGame(g);
 		
@@ -112,9 +108,8 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 
 	private void renderGame1(Graphics g) {
-		ratWhiteRef.render(g);
-		ratBlackRef.render(g);
-		atkRef.render();
+		
+		calRef.render(g);
 	}
 
 	private void renderGame4( Graphics g) {
@@ -122,7 +117,9 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 	private void renderGame2( Graphics g) {
 		
-		calRef.render(g);
+		ratWhiteRef.render(g);
+		ratBlackRef.render(g);
+		atkRef.render();
 	}
 	private void renderGame3(Graphics g) {
 		for (Dust dust :dusts) {
@@ -141,7 +138,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 	private void updateGame(GameContainer c,int delta) {
 		
-		updateGame1(c);
+		updateGame1(c,delta);
 		if(myClockRef.getTime()>=10)
 		{
 			updateGame2(c,delta);
@@ -159,10 +156,9 @@ import org.newdawn.slick.state.StateBasedGame;
 		}
 	}
 
-	private void updateGame1(GameContainer c) {
-		ratWhiteRef.update(c);
-		ratBlackRef.update(c);
-		atkRef.update(c);
+	private void updateGame1(GameContainer c,int delta) {
+		
+		calRef.update(c,delta);
 	}
 
 	private void checkHP(StateBasedGame s) {
@@ -183,7 +179,9 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 	private void updateGame2(GameContainer c,int delta) {
 		
-		calRef.update(c,delta);
+		ratWhiteRef.update(c);
+		ratBlackRef.update(c);
+		atkRef.update(c);
 	}
 	private void updateGame3(GameContainer c) {
 		for (Dust dust :dusts) {
