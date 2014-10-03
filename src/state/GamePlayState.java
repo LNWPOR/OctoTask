@@ -1,7 +1,7 @@
 package state;
 
 import gm.AudioGM;
-import gm.GameController;
+
 import oj.AtkRat;
 import oj.Calculator;
 import oj.Dust;
@@ -118,30 +118,54 @@ import org.newdawn.slick.state.StateBasedGame;
 	private void drawTutorial(Graphics g) {
 		if(myClockRef.getTime()<tutorTime)
 		{
-			g.fillRect(250,80, 530,70);
-			g.setColor(Color.red);
-			g.drawString("Objective1: Answer the algorithm by 1 , 2 or 3 button",275, 100);
-			g.setColor(Color.black);
-			g.drawString("(HP will +1 every 15 sec if you survive :P)", 325, 120);
+			tutor1(g);
 		}
 		else if(myClockRef.getTime()>=startTimeGame2 && myClockRef.getTime()- startTimeGame2 < tutorTime)
 		{
-			g.fillRect(175,80, 770,50);
-			g.setColor(Color.red);
-			g.drawString("Objective2: Defend your house from rat by attacking them with left or right click",200, 100);
+			tutor2(g);
 		}
 		else if(myClockRef.getTime()>=startTimeGame3 && myClockRef.getTime()- startTimeGame3 < tutorTime)
 		{
-			g.fillRect(175,80, 740,50);
-			g.setColor(Color.red);
-			g.drawString("Objective3: Clean the falling dust by collecting them with A,D button to move",200, 100);
+			tutor3(g);
 		}
 		else if(myClockRef.getTime()>=startTimeGame4 && myClockRef.getTime()- startTimeGame4 < tutorTime)
 		{
-			g.fillRect(150,80, 720,50);
-			g.setColor(Color.red);
-			g.drawString("Objective4: Answer the telephone by matching the phone with SPACEBAR button",180, 100);
+			tutor4(g);
 		}
+	}
+
+
+
+	private void tutor4(Graphics g) {
+		g.fillRect(150,80, 720,50);
+		g.setColor(Color.red);
+		g.drawString("Objective4: Answer the telephone by matching the phone with SPACEBAR button",180, 100);
+	}
+
+
+
+	private void tutor3(Graphics g) {
+		g.fillRect(175,80, 740,50);
+		g.setColor(Color.red);
+		g.drawString("Objective3: Clean the falling dust by collecting them with A,D button to move",200, 100);
+	}
+
+
+
+	private void tutor2(Graphics g) {
+		g.fillRect(175,80, 770,50);
+		g.setColor(Color.red);
+		g.drawString("Objective2: Defend your house from rat by attacking them with left or right click",200, 100);
+	}
+
+
+
+	private void tutor1(Graphics g) {
+		g.fillRect(250,80, 530,70);
+		g.setColor(Color.red);
+		g.drawString("Objective1: Answer the algorithm by 1 , 2 or 3 button",275, 100);
+		g.setColor(Color.black);
+		g.drawString("(HP will +1 every 15 sec if you survive :P)", 325, 120);
 	}
 
 	private void renderGame(Graphics g) {
@@ -184,10 +208,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
 		myClockRef.update(delta);
 		
-		if(!audioRef.gamePlayAD.playing())
-		{
-			audioRef.gamePlayAD.loop();
-		}
+		playGamePlayStateAD();
 		
 		checkTimeIncreaseHP();
 		
@@ -196,6 +217,15 @@ import org.newdawn.slick.state.StateBasedGame;
 		score = myClockRef.currentTime;
 		checkHP(s,c);
 		
+	}
+
+
+
+	private void playGamePlayStateAD() {
+		if(!audioRef.gamePlayAD.playing())
+		{
+			audioRef.gamePlayAD.loop();
+		}
 	}
 
 	private void checkTimeIncreaseHP() {
@@ -270,10 +300,6 @@ import org.newdawn.slick.state.StateBasedGame;
 		phoneRef.update(c,delta);
 	}
 
-	
-	
-
-	
 	@Override
 	public int getID() {
 		

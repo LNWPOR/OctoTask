@@ -42,11 +42,7 @@ public class GameOverState extends BasicGameState{
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
 		
-		if(!audioRef.gameOverAD.playing() && !playOverAD)
-		{
-			audioRef.gameOverAD.play();
-			playOverAD=true;
-		}
+		playOverAD();
 		
 		if(c.getInput().isKeyPressed(Input.KEY_1)&& !audioRef.gameOverAD.playing())
 		{
@@ -54,6 +50,14 @@ public class GameOverState extends BasicGameState{
 			playOverAD=false;
 			s.enterState(StateController.Menu);
 			
+		}
+	}
+
+	private void playOverAD() {
+		if(!audioRef.gameOverAD.playing() && !playOverAD)
+		{
+			audioRef.gameOverAD.play();
+			playOverAD=true;
 		}
 	}
 
