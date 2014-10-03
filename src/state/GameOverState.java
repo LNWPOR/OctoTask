@@ -1,5 +1,7 @@
 package state;
 
+
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameOverState extends BasicGameState{
 
 	private Image gameOverBGImg;
+
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
 		gameOverBGImg = new Image("res/gameOverBG.png");
@@ -33,7 +36,9 @@ public class GameOverState extends BasicGameState{
 		if(c.getInput().isKeyPressed(Input.KEY_1))
 		{
 			GamePlayState.score=0;
+			
 			s.enterState(StateController.Menu);
+			
 		}
 	}
 
