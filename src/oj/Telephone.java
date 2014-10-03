@@ -1,5 +1,6 @@
 package oj;
 
+import gm.AudioGM;
 import gm.GameController;
 
 import java.util.Random;
@@ -42,6 +43,8 @@ public class Telephone {
 	private int timeForNextCall = MaxtTimeForNextCall;
 	//------------------------------
 	private HP hpRef;
+	private AudioGM audioRef;
+	
 	public Telephone() throws SlickException{
 		smallPhoneImg1 = new Image("res/smallBlackPhone2.png");
 		smallPhoneImg2 = new Image("res/smallGreenPhone2.png");
@@ -64,6 +67,8 @@ public class Telephone {
 		randComingPhone();
 		
 		hpRef = new HP();
+		
+		audioRef = new AudioGM();
 	}
 	private void randComingPhone() {
 		comingPhone=rand.nextInt(3)+1;
@@ -148,6 +153,7 @@ public class Telephone {
 	public void selectPhone(GameContainer c){
 
 		if(c.getInput().isKeyPressed(Input.KEY_SPACE)){
+			audioRef.changePhoneAD.play();
 			if(yourPhone ==4)
 			{
 				yourPhone=0;
