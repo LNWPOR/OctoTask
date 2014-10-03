@@ -185,8 +185,9 @@ import org.newdawn.slick.state.StateBasedGame;
 		
 		octopusRef.update(c);	
 		updateGame(c,delta);	
+		score = myClockRef.currentTime;
 		checkHP(s,c);
-		score+=Math.abs(myClockRef.getOneSec());
+		
 	}
 
 	private void checkTimeIncreaseHP() {
@@ -229,8 +230,9 @@ import org.newdawn.slick.state.StateBasedGame;
 		if(hpRef.hp ==0)
 		{
 			resetGamePlayScene();
-			c.reinit();
+			this.init(c, s);
 			s.enterState(StateController.GameOver);
+		
 		}
 	}
 

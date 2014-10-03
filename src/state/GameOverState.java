@@ -2,6 +2,10 @@ package state;
 
 
 
+import javax.xml.ws.handler.MessageContext.Scope;
+
+import gm.GameController;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,20 +18,21 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameOverState extends BasicGameState{
 
 	private Image gameOverBGImg;
-
+	private Image scoreBoxImg;
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
 		gameOverBGImg = new Image("res/gameOverBG.png");
-		
+		scoreBoxImg = new Image("res/scoreBox.png");
 	}
 
 	@Override
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
 		gameOverBGImg.draw();
+		
+		scoreBoxImg.draw(GameController.gameWidth/2 -100,GameController.gameHeight/2 -200);
 		g.setColor(Color.red);
-		g.drawString("Your score is "+GamePlayState.score, 500,300);
-		g.drawString("KAK mak mak eiei :P", 500, 375);
-		g.drawString("1-Menu", 500, 450);
+		g.drawString(""+GamePlayState.score, 600,300);
+		
 	}
 
 	@Override
