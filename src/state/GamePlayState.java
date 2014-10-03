@@ -28,6 +28,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	private int dustCount=10;
 	//----------------------
 	private Octopus octopusRef;
+	private boolean octocacmove = false;
 	//----------------------
 	private Calculator calRef;
 	//----------------------
@@ -77,6 +78,7 @@ import org.newdawn.slick.state.StateBasedGame;
 		atkRef = new AtkRat();
 	}
 	private void initGame3() throws SlickException {
+		
 		
 		float rangeFall=500;
 		dusts = new Dust[dustCount];
@@ -222,9 +224,8 @@ import org.newdawn.slick.state.StateBasedGame;
 	private void checkHP(StateBasedGame s,GameContainer c) throws SlickException {
 		if(hpRef.hp ==0)
 		{
-			c.reinit();
-			
 			resetGamePlayScene();
+			c.reinit();
 			s.enterState(StateController.GameOver);
 		}
 	}
@@ -247,6 +248,11 @@ import org.newdawn.slick.state.StateBasedGame;
 		for (Dust dust :dusts) {
 		    dust.update(c);
 		    }
+		if(!octocacmove)
+		{	
+			octopusRef.octoCanMove =true;
+			octocacmove = true;
+		}
 	}
 
 	

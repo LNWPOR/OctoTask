@@ -46,7 +46,7 @@ public class Dust {
 		this.y+=speedFallDown;
 		dustShapeRec.setLocation(this.x, this.y);
 		OnCollider();
-		octopusRef.OctoMoveSet2(c);
+		
 		
 	}
 	
