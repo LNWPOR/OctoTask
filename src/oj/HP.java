@@ -1,7 +1,9 @@
 package oj;
 
 public class HP {
-public static int hp ;
+	
+	
+	public static int hp ;
 	
 	public void HpDamage(){
 		hp-=1;
@@ -10,4 +12,5 @@ public static int hp ;
 	public void HpIncrease(){
 		hp+=1;
 	}
+	
 }

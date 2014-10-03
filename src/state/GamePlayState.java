@@ -1,5 +1,6 @@
 package state;
 
+import gm.AudioGM;
 import gm.GameController;
 import oj.AtkRat;
 import oj.Calculator;
@@ -15,8 +16,6 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -26,7 +25,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	private Image blackground;
 	//----------------------
 	private Dust[] dusts;
-	private int dustCount=10;
+	private int dustCount=5;
 	//----------------------
 	private Octopus octopusRef;
 	private boolean octocacmove = false;
@@ -46,25 +45,28 @@ import org.newdawn.slick.state.StateBasedGame;
 	private int startTimeGame3=20;
 	private int startTimeGame4=30;
 	private int tutorTime = 5;
-	
-	
 	//----------------------
 	private Rat_White ratWhiteRef;
 	private Rat_Black ratBlackRef;
 	//----------------------
 	private AtkRat atkRef;
 	//----------------------
+	private AudioGM audioRef;
+	
+	
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
 		hpRef = new HP();
 		HP.hp = maxHP;
+		
 	}
 	
 	
 	
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
-
+		audioRef = new AudioGM();
+		
 		octopusRef = new Octopus();
 		myClockRef = new MyClock();
 		initGame1();
@@ -181,6 +183,12 @@ import org.newdawn.slick.state.StateBasedGame;
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
 		myClockRef.update(delta);
+		
+		if(!audioRef.gamePlayAD.playing())
+		{
+			audioRef.gamePlayAD.loop();
+		}
+		
 		checkTimeIncreaseHP();
 		
 		octopusRef.update(c);	
@@ -241,9 +249,7 @@ import org.newdawn.slick.state.StateBasedGame;
 		myClockRef.time = 0;
 	}
 
-	private void updateGame4(GameContainer c,int delta) {
-		phoneRef.update(c,delta);
-	}
+	
 	private void updateGame2(GameContainer c,int delta) {
 		
 		ratWhiteRef.update(c);
@@ -259,6 +265,9 @@ import org.newdawn.slick.state.StateBasedGame;
 			octopusRef.octoCanMove =true;
 			octocacmove = true;
 		}
+	}
+	private void updateGame4(GameContainer c,int delta) {
+		phoneRef.update(c,delta);
 	}
 
 	

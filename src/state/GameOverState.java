@@ -4,6 +4,7 @@ package state;
 
 import javax.xml.ws.handler.MessageContext.Scope;
 
+import gm.AudioGM;
 import gm.GameController;
 
 import org.newdawn.slick.Color;
@@ -19,10 +20,13 @@ public class GameOverState extends BasicGameState{
 
 	private Image gameOverBGImg;
 	private Image scoreBoxImg;
+	private AudioGM audioRef;
+	private boolean playOverAD = false;
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
 		gameOverBGImg = new Image("res/gameOverBG.png");
 		scoreBoxImg = new Image("res/scoreBox.png");
+		audioRef = new AudioGM();
 	}
 
 	@Override
@@ -38,10 +42,16 @@ public class GameOverState extends BasicGameState{
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
 		
-		if(c.getInput().isKeyPressed(Input.KEY_1))
+		if(!audioRef.gameOverAD.playing() && !playOverAD)
+		{
+			audioRef.gameOverAD.play();
+			playOverAD=true;
+		}
+		
+		if(c.getInput().isKeyPressed(Input.KEY_1)&& !audioRef.gameOverAD.playing())
 		{
 			GamePlayState.score=0;
-			
+			playOverAD=false;
 			s.enterState(StateController.Menu);
 			
 		}
