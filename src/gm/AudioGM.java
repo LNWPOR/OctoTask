@@ -13,6 +13,10 @@ public class AudioGM {
 	public Sound damageAD;
 	public Sound increaseHPAD;
 	public Sound changePhoneAD;
+	public Sound phone1AD;
+	public Sound phone2AD;
+	public Sound phone3AD;
+	public Sound phone4AD;
 	
 	public AudioGM() throws SlickException{
 		
@@ -23,5 +27,9 @@ public class AudioGM {
 		damageAD = new Sound("res/damage.wav");
 		increaseHPAD = new Sound("res/gainlp.wav");
 		changePhoneAD = new Sound("res/changePhoneAD.wav");
+		phone1AD = new Sound("res/phone1AD.wav");
+		phone2AD = new Sound("res/phone2AD.wav");
+		phone3AD = new Sound("res/phone3AD.wav");
+		phone4AD = new Sound("res/phone4AD.wav");
 	}
 }

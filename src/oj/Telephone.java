@@ -44,8 +44,11 @@ public class Telephone {
 	//------------------------------
 	private HP hpRef;
 	private AudioGM audioRef;
+	private boolean canPlayRingTone = false;
+	
 	
 	public Telephone() throws SlickException{
+		audioRef = new AudioGM();
 		smallPhoneImg1 = new Image("res/smallBlackPhone2.png");
 		smallPhoneImg2 = new Image("res/smallGreenPhone2.png");
 		smallPhoneImg3 = new Image("res/smallRedPhone2.png");
@@ -67,11 +70,32 @@ public class Telephone {
 		randComingPhone();
 		
 		hpRef = new HP();
-		
-		audioRef = new AudioGM();
+	
 	}
 	private void randComingPhone() {
 		comingPhone=rand.nextInt(3)+1;
+		playRingTone();
+	}
+	private void playRingTone() {
+		if(canPlayRingTone)
+		{
+			if(comingPhone==1 )
+			{
+				audioRef.phone1AD.play();
+			}
+			if(comingPhone==2)
+			{
+				audioRef.phone2AD.play();
+			}
+			if(comingPhone==3)
+			{
+				audioRef.phone3AD.play();
+			}
+			if(comingPhone==4)
+			{
+				audioRef.phone4AD.play();
+			}
+		}
 	}
 	public void render( Graphics g){
 		changePhone();
@@ -120,6 +144,7 @@ public class Telephone {
 		checkLimitComingPhone(delta);
 		selectPhone(c);
 		this.sx = octopusRef.getX()+170;
+		canPlayRingTone = true;
 		
 	}
 	private void checkLimitComingPhone(int delta) {
