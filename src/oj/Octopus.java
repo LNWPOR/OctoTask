@@ -53,7 +53,7 @@ public class Octopus {
 	}
 	public void MoveLeft(){
 		if(this.x!=0)
-		this.x-=speed;// 0.1 to slow speed of octopus which idk why it go so fast
+		this.x-=speed;
 	}
 	public void MoveRight(){
 		if(this.x!=GameController.gameWidth-200)
