@@ -34,7 +34,6 @@ public class MenuState extends BasicGameState{
 		if(!audioRef.menuAD.playing())
 		{
 			audioRef.menuAD.play();
-			System.out.println("KUY");
 		}
 		
 		
