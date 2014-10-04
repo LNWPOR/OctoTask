@@ -33,6 +33,7 @@ public class Calculator {
 	private AudioGM audioRef;
 	
 	public Calculator() throws SlickException{
+		
 		audioRef = new AudioGM();
 		octopusRef = new Octopus();
 		calBoxImg = new Image("res/calBox.png");
@@ -42,7 +43,9 @@ public class Calculator {
 		myClockRef = new MyClock();
 		startCal(rand);
 	}
-	private void startCal(Random rand) {
+	
+	private void startCal(Random rand){
+		
 		num1=rand.nextInt(30);
 		num2=rand.nextInt(30);
 		num3=num1+num2;
@@ -66,9 +69,9 @@ public class Calculator {
 		    ans3 = num3;
 		}
 	}
-	public void render(Graphics g)
-	{
 	
+	public void render(Graphics g){
+		
 		calBoxImg.draw(this.x,this.y);
 		g.setColor(Color.white);
 		g.drawString(num1+"+"+num2+"=?", this.x+120, this.y+50);
@@ -76,13 +79,14 @@ public class Calculator {
 		g.drawString( calTime+"", this.x+140, this.y+120);
 	}
 
-	public void update(GameContainer c,int delta) {
+	public void update(GameContainer c,int delta){
+		
 		this.x = octopusRef.getX()-50;
 		checkYourAns(c);
 		checkTime(delta);
-		
 	}
 	private void checkTime(int delta) {
+		
 		myClockRef.update(delta);
 		calTime-=  myClockRef.getOneSec();
 		
@@ -95,7 +99,8 @@ public class Calculator {
 			myClockRef.setCurrentTime();
 	}
 	
-	private void checkYourAns(GameContainer c) {
+	private void checkYourAns(GameContainer c){
+		
 		if(ansnum==1)
 		{
 			if(c.getInput().isKeyPressed(Input.KEY_1))

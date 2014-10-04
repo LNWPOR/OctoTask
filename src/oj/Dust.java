@@ -32,6 +32,7 @@ public class Dust {
 	private boolean canPlayDustAD = false;
 	
 	public Dust(float rangeFall) throws SlickException{
+		
 		audioRef = new AudioGM();
 		this.rangeFall=rangeFall;
 		randomPosDust(this.rangeFall);
@@ -48,16 +49,16 @@ public class Dust {
 	}
 	
 	public void update(GameContainer c){
+		
 		this.y+=speedFallDown;
 		dustImg.rotate(-1);
 		dustShapeRec.setLocation(this.x, this.y);
 		OnCollider();
 		canPlayDustAD = true;
-		
-		
 	}
 	
 	public void randomPosDust(float rangeFall){
+		
 		this.y=-1;
 		Random rand = new Random();
 		this.y -=rangeFall;
@@ -67,6 +68,7 @@ public class Dust {
 			audioRef.dustAD.play();
 		}
 	}
+	
 	public void OnCollider(){
 		
 		if(this.dustShapeRec.intersects(octopusRef.octoShapeRec))

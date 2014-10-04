@@ -5,10 +5,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Rat_Black extends Rat{
-	public Rat_Black() throws SlickException{
-		super();
 	
+	public Rat_Black() throws SlickException{
 		
+		super();
 	}
 
 	private void selectImgTomatchDirection() throws SlickException {
@@ -24,6 +24,7 @@ public class Rat_Black extends Rat{
 		}
 	}
 	public void update(GameContainer c){
+		
 		try {
 			selectImgTomatchDirection();
 			
@@ -31,6 +32,7 @@ public class Rat_Black extends Rat{
 			
 			e.printStackTrace();
 		}
+		
 		canPlayRatAD = true;
 		ratMove();
 		ratShapeRec.setLocation(x, y);

@@ -12,22 +12,19 @@ import state.GamePlayState;
 import state.MenuState;
 
 public class GameController extends StateBasedGame{
-    public static int gameWidth=1024;
+    
+	public static int gameWidth=1024;
     public static int gameHeight=720;
-    
-    
     
 	public GameController(String name) {
 		super(name);
-		
 	}
 
 	public static void main(String[] args) {
-	
+		
 		try{
 			AppGameContainer app  = new AppGameContainer(new GameController("OctoTask"));
 			app.setDisplayMode(gameWidth,gameHeight, false);
-			//app.setMinimumLogicUpdateInterval(1000 / 60);
 			app.start();
 		}catch(SlickException e)
 		{
@@ -36,8 +33,8 @@ public class GameController extends StateBasedGame{
 	}
 
 	@Override
-	public void initStatesList(GameContainer gc) throws SlickException {
-		// TODO Auto-generated method stub
+	public void initStatesList(GameContainer gc) throws SlickException{
+		
 		this.addState(new MenuState());
 		this.addState(new GamePlayState());
 		this.addState(new GameOverState());

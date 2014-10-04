@@ -22,8 +22,10 @@ public class GameOverState extends BasicGameState{
 	private Image scoreBoxImg;
 	private AudioGM audioRef;
 	private boolean playOverAD = false;
+	
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
+	
 		gameOverBGImg = new Image("res/gameOverBG.png");
 		scoreBoxImg = new Image("res/scoreBox.png");
 		audioRef = new AudioGM();
@@ -31,6 +33,7 @@ public class GameOverState extends BasicGameState{
 
 	@Override
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
+	
 		gameOverBGImg.draw();
 		
 		scoreBoxImg.draw(GameController.gameWidth/2 -100,GameController.gameHeight/2 -200);
@@ -54,6 +57,7 @@ public class GameOverState extends BasicGameState{
 	}
 
 	private void playOverAD() {
+		
 		if(!audioRef.gameOverAD.playing() && !playOverAD)
 		{
 			audioRef.gameOverAD.play();

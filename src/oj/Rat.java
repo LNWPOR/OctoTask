@@ -38,11 +38,9 @@ public class Rat {
 		ratShapeRec = new Rectangle(this.x,this.y,150,75);
 		randStartRatPos();
 		atkRef = new AtkRat();
-		
 	}
 
 	private void randStartRatPos() {
-		
 		
 		startFromleft =false;
 		startFromRight =false;
@@ -61,13 +59,16 @@ public class Rat {
 	}
 	
 	public void render(Graphics g){
+		
 		g.drawImage(ratImg, x, y);
 	}
+	
 	public void update(GameContainer c){
 		
 	}
 
 	protected void checkCollision(GameContainer c) {
+		
 		if(ratShapeRec.intersects(octopusRef.octoShapeRec))
 		{
 			hpRef.HpDamage();
@@ -96,6 +97,7 @@ public class Rat {
 	}
 
 	protected void ratMove() {
+		
 		if(startFromleft)
 		{
 			 x+= speed;

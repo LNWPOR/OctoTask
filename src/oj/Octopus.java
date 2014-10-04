@@ -21,6 +21,7 @@ public class Octopus {
 	public float speed  =1;
 
 	public Octopus() throws SlickException{
+		
 		octopusImg =  new Image("res/Octopus2.png");
 		x  =GameController.gameWidth/2-100 ;
 		y  =GameController.gameHeight/2+10;
@@ -34,11 +35,13 @@ public class Octopus {
 	}
 
 	public void update(GameContainer c){
+		
 		octoShapeRec.setLocation(x, y);
 		octoMoveSet(c);
 	}
 	
 	public void octoMoveSet(GameContainer c){
+		
 		if(octoCanMove == true)
 		{
 			if(c.getInput().isKeyDown(Input.KEY_A))
@@ -52,17 +55,23 @@ public class Octopus {
 		}
 	}
 	public void MoveLeft(){
+		
 		if(this.x!=0)
 		this.x-=speed;
 	}
+	
 	public void MoveRight(){
+		
 		if(this.x!=GameController.gameWidth-200)
 		this.x+=speed;
 	}
+	
 	public float getX(){
+		
 		return x;
-}
+	}
+	
 	public float getY(){
 		return y;
-}
+	}
 }

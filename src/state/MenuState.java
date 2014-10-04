@@ -1,7 +1,5 @@
 package state;
 
-
-
 import gm.AudioGM;
 
 import org.newdawn.slick.GameContainer;
@@ -16,16 +14,18 @@ public class MenuState extends BasicGameState{
 
 	private Image menuBGImg;
 	private AudioGM audioRef;
+	
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
+	
 		menuBGImg = new Image("res/menuBG.png");
 		audioRef = new AudioGM();
 	}
 
 	@Override
 	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
+		
 		menuBGImg.draw(0, 0);
-
 	}
 
 	@Override
@@ -41,6 +41,7 @@ public class MenuState extends BasicGameState{
 	}
 
 	private void playMenuStateAD() {
+		
 		if(!audioRef.menuAD.playing())
 		{
 			audioRef.menuAD.play();
@@ -49,6 +50,7 @@ public class MenuState extends BasicGameState{
 
 	@Override
 	public int getID() {
+		
 		return StateController.Menu;
 	}
 

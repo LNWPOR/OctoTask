@@ -6,7 +6,6 @@ import gm.AudioGM;
 
 public class HP {
 	
-	
 	public static int hp ;
 	private AudioGM audioRef;
 	

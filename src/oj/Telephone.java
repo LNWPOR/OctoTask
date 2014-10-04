@@ -34,20 +34,21 @@ public class Telephone {
 	private float sx;
 	private float sy;
 	Random rand = new Random();
-	//------------------------------
+	
 	private MyClock myClockRef;
 	private int maxLimitComingPhoneTime = 10;
 	private int limitComingPhoneTime = maxLimitComingPhoneTime;
 	
 	private int MaxtTimeForNextCall = 5;
 	private int timeForNextCall = MaxtTimeForNextCall;
-	//------------------------------
+	
 	private HP hpRef;
 	private AudioGM audioRef;
 	private boolean canPlayRingTone = false;
 	
 	
 	public Telephone() throws SlickException{
+		
 		audioRef = new AudioGM();
 		smallPhoneImg1 = new Image("res/smallBlackPhone2.png");
 		smallPhoneImg2 = new Image("res/smallGreenPhone2.png");
@@ -73,10 +74,12 @@ public class Telephone {
 	
 	}
 	private void randComingPhone() {
+		
 		comingPhone=rand.nextInt(3)+1;
 		playRingTone();
 	}
 	private void playRingTone() {
+		
 		if(canPlayRingTone)
 		{
 			if(comingPhone==1 )
@@ -97,13 +100,17 @@ public class Telephone {
 			}
 		}
 	}
+	
 	public void render( Graphics g){
+		
 		changePhone();
 		changeComingPhone();
 		g.setColor(Color.red);
 		g.drawString(" "+limitComingPhoneTime, sx+100, sy);
 	}
+	
 	private void changeComingPhone() {
+		
 		smallPhoneImg1.draw(sx,sy);
 		if(comingPhone==1 )
 		{
@@ -122,7 +129,9 @@ public class Telephone {
 			smallPhoneImg4.draw(sx,sy);
 		}
 	}
+	
 	private void changePhone() {
+		
 		if(yourPhone==1 )
 		{
 			bigPhoneImg1.draw(bx,by);
@@ -140,17 +149,20 @@ public class Telephone {
 			bigPhoneImg4.draw(bx,by);
 		}
 	}
+	
 	public void update(GameContainer c,int delta){
+		
 		checkLimitComingPhone(delta);
 		selectPhone(c);
 		this.sx = octopusRef.getX()+170;
 		canPlayRingTone = true;
 		
 	}
+	
 	private void checkLimitComingPhone(int delta) {
-		myClockRef.update(delta);
-
 		
+		myClockRef.update(delta);
+	
 		if(yourPhone!= comingPhone)
 		{
 			
