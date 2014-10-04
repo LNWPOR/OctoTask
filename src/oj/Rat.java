@@ -29,6 +29,7 @@ public class Rat {
 	private HP hpRef;
 	private AtkRat atkRef;
 	private AudioGM audioRef;
+	protected boolean canPlayRatAD = false;
 	
 	public Rat() throws SlickException{
 		
@@ -42,7 +43,7 @@ public class Rat {
 
 	private void randStartRatPos() {
 		
-		audioRef.ratAD.play();
+		
 		startFromleft =false;
 		startFromRight =false;
 		y=GameController.gameHeight/2+140;
@@ -53,8 +54,10 @@ public class Rat {
 			x = GameController.gameWidth+1000;     //start from right
 			startFromRight = true;
 		}
-		
-	
+		if(canPlayRatAD)
+		{
+			audioRef.ratAD.play();
+		}
 	}
 	
 	public void render(Graphics g){

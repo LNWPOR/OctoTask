@@ -31,7 +31,7 @@ public class Rat_Black extends Rat{
 			
 			e.printStackTrace();
 		}
-		
+		canPlayRatAD = true;
 		ratMove();
 		ratShapeRec.setLocation(x, y);
 		checkCollision(c);

@@ -33,6 +33,7 @@ public class Rat_White extends Rat{
 			e.printStackTrace();
 		}
 		
+		canPlayRatAD = true;
 		ratMove();
 		ratShapeRec.setLocation(x, y);
 		checkCollision(c);

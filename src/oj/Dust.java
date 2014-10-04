@@ -1,8 +1,10 @@
 package oj;
 
+import gm.AudioGM;
 import gm.GameController;
 
 import java.util.Random;
+
 
 
 
@@ -26,8 +28,11 @@ public class Dust {
 	private float rangeFall;
 	private Shape dustShapeRec;
 	private HP hpRef;
+	private AudioGM audioRef;
+	private boolean canPlayDustAD = false;
 	
 	public Dust(float rangeFall) throws SlickException{
+		audioRef = new AudioGM();
 		this.rangeFall=rangeFall;
 		randomPosDust(this.rangeFall);
 		dustImg = new Image("res/Dust2.png");
@@ -47,6 +52,7 @@ public class Dust {
 		dustImg.rotate(-1);
 		dustShapeRec.setLocation(this.x, this.y);
 		OnCollider();
+		canPlayDustAD = true;
 		
 		
 	}
@@ -56,7 +62,10 @@ public class Dust {
 		Random rand = new Random();
 		this.y -=rangeFall;
 		this.x = rand.nextFloat()*800;
-		
+		if(canPlayDustAD)
+		{
+			audioRef.dustAD.play();
+		}
 	}
 	public void OnCollider(){
 		
