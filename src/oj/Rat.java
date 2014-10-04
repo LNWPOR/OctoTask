@@ -1,5 +1,6 @@
 package oj;
 
+import gm.AudioGM;
 import gm.GameController;
 
 import java.util.Random;
@@ -8,6 +9,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
@@ -26,17 +28,21 @@ public class Rat {
 	private Octopus octopusRef;
 	private HP hpRef;
 	private AtkRat atkRef;
+	private AudioGM audioRef;
 	
 	public Rat() throws SlickException{
 		
+		audioRef = new AudioGM();
 		hpRef = new HP();
 		ratShapeRec = new Rectangle(this.x,this.y,150,75);
 		randStartRatPos();
 		atkRef = new AtkRat();
+		
 	}
 
 	private void randStartRatPos() {
 		
+		audioRef.ratAD.play();
 		startFromleft =false;
 		startFromRight =false;
 		y=GameController.gameHeight/2+140;
