@@ -1,5 +1,7 @@
 package oj;
 
+import gm.AudioGM;
+
 import java.util.Random;
 
 import org.newdawn.slick.Color;
@@ -28,8 +30,10 @@ public class Calculator {
 	private MyClock myClockRef;
 	private int maxCalTime = 6;
 	private int calTime = maxCalTime ;
+	private AudioGM audioRef;
 	
 	public Calculator() throws SlickException{
+		audioRef = new AudioGM();
 		octopusRef = new Octopus();
 		calBoxImg = new Image("res/calBox.png");
 		hpRef = new HP();
@@ -94,37 +98,40 @@ public class Calculator {
 	private void checkYourAns(GameContainer c) {
 		if(ansnum==1)
 		{
-		if(c.getInput().isKeyPressed(Input.KEY_1))
-		{
-			startCal(rand);
-			calTime =maxCalTime;
-		}else if(c.getInput().isKeyPressed(Input.KEY_2)||c.getInput().isKeyPressed(Input.KEY_3))
+			if(c.getInput().isKeyPressed(Input.KEY_1))
 			{
-			hpRef.HpDamage();
+				audioRef.answerCalAD.play();
+				startCal(rand);
+				calTime =maxCalTime;
+			}else if(c.getInput().isKeyPressed(Input.KEY_2)||c.getInput().isKeyPressed(Input.KEY_3))
+			{
+				hpRef.HpDamage();
 			}
 		}
 		
 		if(ansnum==2)
 		{
-		if(c.getInput().isKeyPressed(Input.KEY_2))
-		{
-			startCal(rand);
-			calTime =maxCalTime;
-		}else if(c.getInput().isKeyPressed(Input.KEY_1)||c.getInput().isKeyPressed(Input.KEY_3))
+			if(c.getInput().isKeyPressed(Input.KEY_2))
 			{
-			hpRef.HpDamage();
+				audioRef.answerCalAD.play();
+				startCal(rand);
+				calTime =maxCalTime;
+			}else if(c.getInput().isKeyPressed(Input.KEY_1)||c.getInput().isKeyPressed(Input.KEY_3))
+			{
+				hpRef.HpDamage();
 			}
 		}
 		
 		if(ansnum==3)
 		{
-		if(c.getInput().isKeyPressed(Input.KEY_3))
-		{
-			startCal(rand);
-			calTime =maxCalTime;
+			if(c.getInput().isKeyPressed(Input.KEY_3))
+			{
+				audioRef.answerCalAD.play();
+				startCal(rand);
+				calTime =maxCalTime;
 		}else if(c.getInput().isKeyPressed(Input.KEY_1)||c.getInput().isKeyPressed(Input.KEY_2))
 			{
-			hpRef.HpDamage();
+				hpRef.HpDamage();
 			}
 		}
 	}
