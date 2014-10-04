@@ -17,6 +17,7 @@ public class AudioGM {
 	public Sound phone2AD;
 	public Sound phone3AD;
 	public Sound phone4AD;
+	public Sound octoAtkAD;
 	
 	public AudioGM() throws SlickException{
 		
@@ -31,5 +32,6 @@ public class AudioGM {
 		phone2AD = new Sound("res/phone2AD.wav");
 		phone3AD = new Sound("res/phone3AD.wav");
 		phone4AD = new Sound("res/phone4AD.wav");
+		octoAtkAD = new Sound("res/octoAtkAD.wav");
 	}
 }

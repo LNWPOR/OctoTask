@@ -1,5 +1,7 @@
 package oj;
 
+import gm.AudioGM;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
@@ -26,7 +28,12 @@ public class AtkRat {
 	private boolean isAtkLeft = false;
 	private boolean isAtkRight = false;
 	
+	private AudioGM audioRef;
+	
+	
 	public AtkRat() throws SlickException{
+		
+		audioRef = new AudioGM();
 		atkWhiteLeftSP = new SpriteSheet("res/atk_white_sp_left.png", 92,200);
 		atkWhiteLeftAnim = new Animation(atkWhiteLeftSP,100);
 		atkWhiteLeftSP = new SpriteSheet("res/atk_white_sp_left.png", 92,200);
@@ -50,13 +57,13 @@ public class AtkRat {
 	}
 	private void renderAtk() {
 		if(isAtkLeft){
-		atkWhiteLeftAnim.draw(x, y);
-		isAtkLeft=false;
+			atkWhiteLeftAnim.draw(x, y);
+			isAtkLeft=false;
 		}
 		
 		if(isAtkRight){
-		atkWhiteRightAnim.draw(x+250,y);
-		isAtkRight=false;
+			atkWhiteRightAnim.draw(x+250,y);
+			isAtkRight=false;
 		}
 	}
 	public void update(GameContainer c){
@@ -67,6 +74,12 @@ public class AtkRat {
 		
 	}
 	private void atk(GameContainer c) {
+		
+		if(c.getInput().isMousePressed(0)||c.getInput().isMousePressed(1))
+		{
+			audioRef.octoAtkAD.play();
+		}
+		
 		if(c.getInput().isMouseButtonDown(0))
 		{
 			isAtkLeft = true;
