@@ -285,6 +285,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 
 	private void checkHP(StateBasedGame s,GameContainer c) throws SlickException {
+		
 		if(hpRef.hp ==0)
 		{
 			resetGamePlayScene();
@@ -295,8 +296,9 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 
 	private void resetGamePlayScene() {
+	
 		hpRef.hp=maxHP;
-		myClockRef.time = 0;
+		timeIncreaseHP=maxtimeIncreaseHP;
 	}
 
 	
@@ -319,6 +321,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	}
 	
 	private void updateGame4(GameContainer c,int delta) {
+		
 		phoneRef.update(c,delta);
 	}
 
