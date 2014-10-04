@@ -35,6 +35,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	private Telephone phoneRef;
 	private HP hpRef;
 	private int maxHP=5;
+	private Image heart;
 	//----------------------
 	public static int score =0;
 	//----------------------
@@ -52,7 +53,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	private AtkRat atkRef;
 	//----------------------
 	private AudioGM audioRef;
-	
+
 	
 	public GamePlayState() throws SlickException {
 		blackground = new Image("res/bg.png");
@@ -64,7 +65,7 @@ import org.newdawn.slick.state.StateBasedGame;
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
 		audioRef = new AudioGM();
-		
+		heart = new Image("res/heart.png");
 		octopusRef = new Octopus();
 		myClockRef = new MyClock();
 		initGame1();
@@ -103,6 +104,8 @@ import org.newdawn.slick.state.StateBasedGame;
 		blackground.draw(0,0);
 		octopusRef.render(g);
 		
+		renderHeart();
+		
 		renderGame(g);
 		
 		g.setColor(Color.white);
@@ -111,6 +114,12 @@ import org.newdawn.slick.state.StateBasedGame;
 		
 		drawTutorial(g);
 		
+	}
+
+	private void renderHeart() {
+		for(int i = 0;i<hpRef.hp;i++){
+			heart.draw(50+50*i, 50);
+		}
 	}
 
 	private void drawTutorial(Graphics g) {
