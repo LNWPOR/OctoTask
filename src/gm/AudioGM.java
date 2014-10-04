@@ -24,7 +24,7 @@ public class AudioGM {
 		gameOverAD = new Music("res/gameOverAD.wav");
 		gamePlayAD = new Music("res/gamePlayAD.wav");
 		
-		damageAD = new Sound("res/damage.wav");
+		damageAD = new Sound("res/damage2.wav");
 		increaseHPAD = new Sound("res/gainlp.wav");
 		changePhoneAD = new Sound("res/changePhoneAD.wav");
 		phone1AD = new Sound("res/phone1AD.wav");

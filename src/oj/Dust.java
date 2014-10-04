@@ -44,6 +44,7 @@ public class Dust {
 	
 	public void update(GameContainer c){
 		this.y+=speedFallDown;
+		dustImg.rotate(-1);
 		dustShapeRec.setLocation(this.x, this.y);
 		OnCollider();
 		

@@ -61,8 +61,6 @@ import org.newdawn.slick.state.StateBasedGame;
 		
 	}
 	
-	
-	
 	@Override
 	public void init(GameContainer c, StateBasedGame s)throws SlickException {
 		audioRef = new AudioGM();
