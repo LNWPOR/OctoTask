@@ -268,7 +268,7 @@ public class GamePlayState extends BasicGameState {
 
 	private void updateGame1(GameContainer c, int delta) {
 
-		calRef.update(c, delta);
+			calRef.update(c, delta);
 	}
 
 	private void checkHP(StateBasedGame s, GameContainer c)
