@@ -10,47 +10,47 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class MenuState extends BasicGameState{
+public class MenuState extends BasicGameState {
 
 	private Image menuBGImg;
 	private AudioGM audioRef;
-	
+
 	@Override
-	public void init(GameContainer c, StateBasedGame s)throws SlickException {
-	
+	public void init(GameContainer c, StateBasedGame s) throws SlickException {
+
 		menuBGImg = new Image("res/menuBG.png");
 		audioRef = new AudioGM();
 	}
 
 	@Override
-	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
-		
+	public void render(GameContainer c, StateBasedGame s, Graphics g)
+			throws SlickException {
+
 		menuBGImg.draw(0, 0);
 	}
 
 	@Override
-	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
-	
+	public void update(GameContainer c, StateBasedGame s, int delta)
+			throws SlickException {
+
 		playMenuStateAD();
-		
-		if(c.getInput().isKeyPressed(Input.KEY_1))
-		{
+
+		if (c.getInput().isKeyPressed(Input.KEY_1)) {
 			audioRef.menuAD.stop();
 			s.enterState(StateController.GamePlay);
 		}
 	}
 
 	private void playMenuStateAD() {
-		
-		if(!audioRef.menuAD.playing())
-		{
+
+		if (!audioRef.menuAD.playing()) {
 			audioRef.menuAD.play();
 		}
 	}
 
 	@Override
 	public int getID() {
-		
+
 		return StateController.Menu;
 	}
 

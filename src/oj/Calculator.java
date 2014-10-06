@@ -11,11 +11,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-
 public class Calculator {
 
 	private Octopus octopusRef;
-	private Image calBoxImg;//300*150
+	private Image calBoxImg;// 300*150
 	private HP hpRef;
 	private float x;
 	private float y;
@@ -29,118 +28,106 @@ public class Calculator {
 	Random rand = new Random();
 	private MyClock myClockRef;
 	private int maxCalTime = 6;
-	private int calTime = maxCalTime ;
+	private int calTime = maxCalTime;
 	private AudioGM audioRef;
-	
-	public Calculator() throws SlickException{
-		
+
+	public Calculator() throws SlickException {
+
 		audioRef = new AudioGM();
 		octopusRef = new Octopus();
 		calBoxImg = new Image("res/calBox.png");
 		hpRef = new HP();
-		this.x=octopusRef.getX()-50;
-		this.y=octopusRef.getY()-200;
+		this.x = octopusRef.getX() - 50;
+		this.y = octopusRef.getY() - 200;
 		myClockRef = new MyClock();
 		startCal(rand);
 	}
-	
-	private void startCal(Random rand){
-		
-		num1=rand.nextInt(30);
-		num2=rand.nextInt(30);
-		num3=num1+num2;
-		ansnum=rand.nextInt(3)+1;
-		if(ansnum ==1)
-		{
+
+	private void startCal(Random rand) {
+
+		num1 = rand.nextInt(30);
+		num2 = rand.nextInt(30);
+		num3 = num1 + num2;
+		ansnum = rand.nextInt(3) + 1;
+		if (ansnum == 1) {
 			ans1 = num3;
-			ans2 = num3+rand.nextInt(10)+1;
-		    ans3 = num3+rand.nextInt(10)+1;
-		}
-		else if(ansnum ==2)
-		{
-			ans1 = num3+rand.nextInt(10)+1;
+			ans2 = num3 + rand.nextInt(10) + 1;
+			ans3 = num3 + rand.nextInt(10) + 1;
+		} else if (ansnum == 2) {
+			ans1 = num3 + rand.nextInt(10) + 1;
 			ans2 = num3;
-		    ans3 = num3+rand.nextInt(10)+1;
+			ans3 = num3 + rand.nextInt(10) + 1;
+		} else if (ansnum == 3) {
+			ans1 = num3 + rand.nextInt(10) + 1;
+			ans2 = num3 + rand.nextInt(10) + 1;
+			ans3 = num3;
 		}
-		else if(ansnum ==3)
-		{
-			ans1 = num3+rand.nextInt(10)+1;
-			ans2 = num3+rand.nextInt(10)+1;
-		    ans3 = num3;
-		}
-	}
-	
-	public void render(Graphics g){
-		
-		calBoxImg.draw(this.x,this.y);
-		g.setColor(Color.white);
-		g.drawString(num1+"+"+num2+"=?", this.x+120, this.y+50);
-		g.drawString("1."+ans1+"  2."+ans2+"  3."+ans3,this.x+80, this.y+80);
-		g.drawString( calTime+"", this.x+140, this.y+120);
 	}
 
-	public void update(GameContainer c,int delta){
-		
-		this.x = octopusRef.getX()-50;
+	public void render(Graphics g) {
+
+		calBoxImg.draw(this.x, this.y);
+		g.setColor(Color.white);
+		g.drawString(num1 + "+" + num2 + "=?", this.x + 120, this.y + 50);
+		g.drawString("1." + ans1 + "  2." + ans2 + "  3." + ans3, this.x + 80,
+				this.y + 80);
+		g.drawString(calTime + "", this.x + 140, this.y + 120);
+	}
+
+	public void update(GameContainer c, int delta) {
+
+		this.x = octopusRef.getX() - 50;
 		checkYourAns(c);
 		checkTime(delta);
 	}
+
 	private void checkTime(int delta) {
-		
+
 		myClockRef.update(delta);
-		calTime-=  myClockRef.getOneSec();
-		
-		if(calTime<0)
-		{
+		calTime -= myClockRef.getOneSec();
+
+		if (calTime < 0) {
 			hpRef.HpDamage();
-			calTime =maxCalTime;
+			calTime = maxCalTime;
 		}
-	
-			myClockRef.setCurrentTime();
+
+		myClockRef.setCurrentTime();
 	}
-	
-	private void checkYourAns(GameContainer c){
-		
-		if(ansnum==1)
-		{
-			if(c.getInput().isKeyPressed(Input.KEY_1))
-			{
+
+	private void checkYourAns(GameContainer c) {
+
+		if (ansnum == 1) {
+			if (c.getInput().isKeyPressed(Input.KEY_1)) {
 				audioRef.answerCalAD.play();
 				startCal(rand);
-				calTime =maxCalTime;
-			}else if(c.getInput().isKeyPressed(Input.KEY_2)||c.getInput().isKeyPressed(Input.KEY_3))
-			{
+				calTime = maxCalTime;
+			} else if (c.getInput().isKeyPressed(Input.KEY_2)
+					|| c.getInput().isKeyPressed(Input.KEY_3)) {
 				hpRef.HpDamage();
 			}
 		}
-		
-		if(ansnum==2)
-		{
-			if(c.getInput().isKeyPressed(Input.KEY_2))
-			{
+
+		if (ansnum == 2) {
+			if (c.getInput().isKeyPressed(Input.KEY_2)) {
 				audioRef.answerCalAD.play();
 				startCal(rand);
-				calTime =maxCalTime;
-			}else if(c.getInput().isKeyPressed(Input.KEY_1)||c.getInput().isKeyPressed(Input.KEY_3))
-			{
+				calTime = maxCalTime;
+			} else if (c.getInput().isKeyPressed(Input.KEY_1)
+					|| c.getInput().isKeyPressed(Input.KEY_3)) {
 				hpRef.HpDamage();
 			}
 		}
-		
-		if(ansnum==3)
-		{
-			if(c.getInput().isKeyPressed(Input.KEY_3))
-			{
+
+		if (ansnum == 3) {
+			if (c.getInput().isKeyPressed(Input.KEY_3)) {
 				audioRef.answerCalAD.play();
 				startCal(rand);
-				calTime =maxCalTime;
-		}else if(c.getInput().isKeyPressed(Input.KEY_1)||c.getInput().isKeyPressed(Input.KEY_2))
-			{
+				calTime = maxCalTime;
+			} else if (c.getInput().isKeyPressed(Input.KEY_1)
+					|| c.getInput().isKeyPressed(Input.KEY_2)) {
 				hpRef.HpDamage();
 			}
 		}
 	}
-	
-	
-	
+
 }

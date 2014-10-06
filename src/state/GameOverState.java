@@ -1,7 +1,5 @@
 package state;
 
-
-
 import javax.xml.ws.handler.MessageContext.Scope;
 
 import gm.AudioGM;
@@ -16,59 +14,61 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class GameOverState extends BasicGameState{
+public class GameOverState extends BasicGameState {
 
 	private Image gameOverBGImg;
 	private Image scoreBoxImg;
 	private AudioGM audioRef;
 	private boolean playOverAD = false;
-	
+
 	@Override
-	public void init(GameContainer c, StateBasedGame s)throws SlickException {
-	
+	public void init(GameContainer c, StateBasedGame s) throws SlickException {
+
 		gameOverBGImg = new Image("res/gameOverBG.png");
 		scoreBoxImg = new Image("res/scoreBox.png");
 		audioRef = new AudioGM();
 	}
 
 	@Override
-	public void render(GameContainer c, StateBasedGame s, Graphics g)throws SlickException {
-	
+	public void render(GameContainer c, StateBasedGame s, Graphics g)
+			throws SlickException {
+
 		gameOverBGImg.draw();
-		
-		scoreBoxImg.draw(GameController.gameWidth/2 -100,GameController.gameHeight/2 -200);
+
+		scoreBoxImg.draw(GameController.gameWidth / 2 - 100,
+				GameController.gameHeight / 2 - 200);
 		g.setColor(Color.red);
-		g.drawString(""+GamePlayState.score, 600,300);
-		
+		g.drawString("" + GamePlayState.score, 600, 300);
+
 	}
 
 	@Override
-	public void update(GameContainer c, StateBasedGame s, int delta)throws SlickException {
-		
+	public void update(GameContainer c, StateBasedGame s, int delta)
+			throws SlickException {
+
 		playOverAD();
-		
-		if(c.getInput().isKeyPressed(Input.KEY_1)&& !audioRef.gameOverAD.playing())
-		{
-			GamePlayState.score=0;
-			playOverAD=false;
+
+		if (c.getInput().isKeyPressed(Input.KEY_1)
+				&& !audioRef.gameOverAD.playing()) {
+			GamePlayState.score = 0;
+			playOverAD = false;
 			s.enterState(StateController.Menu);
-			
+
 		}
 	}
 
 	private void playOverAD() {
-		
-		if(!audioRef.gameOverAD.playing() && !playOverAD)
-		{
+
+		if (!audioRef.gameOverAD.playing() && !playOverAD) {
 			audioRef.gameOverAD.play();
-			playOverAD=true;
+			playOverAD = true;
 		}
 	}
 
 	@Override
 	public int getID() {
-		
+
 		return StateController.GameOver;
 	}
-		
+
 }
