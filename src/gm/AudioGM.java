@@ -38,6 +38,7 @@ public class AudioGM {
 		octoAtkAD = new Sound("res/octoAtkAD.wav");
 		ratAD = new Sound("res/ratAD.wav");
 		dustAD = new Sound("res/dustAD.wav");
+		System.out.println("");
 		answerCalAD = new Sound("res/answerCalAD.wav");
 	}
 }
