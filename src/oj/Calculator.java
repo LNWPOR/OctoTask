@@ -52,14 +52,14 @@ public class Calculator {
 		if (ansnum == 1) {
 			ans1 = num3;
 			ans2 = num3 + rand.nextInt(10) + 1;
-			ans3 = num3 + rand.nextInt(10) + 1;
+			ans3 = num3 - rand.nextInt(10) - 1;
 		} else if (ansnum == 2) {
 			ans1 = num3 + rand.nextInt(10) + 1;
 			ans2 = num3;
-			ans3 = num3 + rand.nextInt(10) + 1;
+			ans3 = num3 - rand.nextInt(10) - 1;
 		} else if (ansnum == 3) {
 			ans1 = num3 + rand.nextInt(10) + 1;
-			ans2 = num3 + rand.nextInt(10) + 1;
+			ans2 = num3 - rand.nextInt(10) - 1;
 			ans3 = num3;
 		}
 	}

@@ -8,6 +8,7 @@ import org.newdawn.slick.state.*;
 import state.GameOverState;
 import state.GamePlayState;
 import state.MenuState;
+import state.RankingState;
 
 public class GameController extends StateBasedGame {
 
@@ -21,9 +22,7 @@ public class GameController extends StateBasedGame {
 	public static void main(String[] args) {
 
 		try {
-			AppGameContainer app = new AppGameContainer(new GameController(
-					"OctoTask"));
-			
+			AppGameContainer app = new AppGameContainer(new GameController("OctoTask"));
 			app.setDisplayMode(gameWidth, gameHeight, false);
 			app.start();
 		} catch (SlickException e) {
@@ -37,6 +36,7 @@ public class GameController extends StateBasedGame {
 		this.addState(new MenuState());
 		this.addState(new GamePlayState());
 		this.addState(new GameOverState());
+		this.addState(new RankingState());
 	}
 
 }

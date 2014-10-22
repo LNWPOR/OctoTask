@@ -35,9 +35,24 @@ public class MenuState extends BasicGameState {
 
 		playMenuStateAD();
 
+		enterPlayState(c, s);
+		enterRankingState(c, s);
+		
+		
+	}
+
+	private void enterRankingState(GameContainer c, StateBasedGame s) {
+		if (c.getInput().isKeyPressed(Input.KEY_2)) {
+			audioRef.menuAD.stop();
+			RankingState.enterRankingState =true;
+			s.enterState(StateController.RANKING);
+		}
+	}
+
+	private void enterPlayState(GameContainer c, StateBasedGame s) {
 		if (c.getInput().isKeyPressed(Input.KEY_1)) {
 			audioRef.menuAD.stop();
-			s.enterState(StateController.GamePlay);
+			s.enterState(StateController.GAMEPLAY);
 		}
 	}
 
@@ -51,7 +66,7 @@ public class MenuState extends BasicGameState {
 	@Override
 	public int getID() {
 
-		return StateController.Menu;
+		return StateController.MENU;
 	}
 
 }

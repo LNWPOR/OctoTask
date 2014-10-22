@@ -1,7 +1,7 @@
 package state;
 
 import gm.AudioGM;
-
+import gm.WritingRanking;
 import oj.AtkRat;
 import oj.Calculator;
 import oj.Dust;
@@ -36,7 +36,15 @@ public class GamePlayState extends BasicGameState {
 	private HP hpRef;
 	private int maxHP = 5;
 	private Image heart;
-
+	private boolean getDamage = false;
+	private int maxDamageDelay=4;
+	private int damageDelay = maxDamageDelay;
+	private boolean getHealth = false;
+	private int maxHealthDelay=4;
+	private int healthDelay = maxHealthDelay;
+	
+	
+	
 	public static int score = 0;
 
 	private MyClock myClockRef;
@@ -51,7 +59,6 @@ public class GamePlayState extends BasicGameState {
 	private Rat_Black ratBlackRef;
 
 	private AtkRat atkRef;
-
 	private AudioGM audioRef;
 
 	public GamePlayState() throws SlickException {
@@ -106,15 +113,31 @@ public class GamePlayState extends BasicGameState {
 			throws SlickException {
 
 		blackground.draw(0, 0);
+		renderGetHealthSP();
+		renderGetDamageSP();
+		
 		octopusRef.render(g);
 		renderHeart();
-
+		
 		renderGame(g);
 
 		g.setColor(Color.white);
 		g.drawString("HP " + HP.hp, 100, 10);
 		g.drawString("Time : " + myClockRef.getTime(), 150, 10);
 		drawTutorial(g);
+	}
+
+	private void renderGetDamageSP() {
+		if(getDamage&&damageDelay>0)
+		{
+			hpRef.renderDamage();
+		}
+	}
+	private void renderGetHealthSP() {
+		if(getHealth&&healthDelay>0)
+		{
+			hpRef.renderHealth();
+		}
 	}
 
 	private void renderHeart() {
@@ -218,9 +241,11 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void update(GameContainer c, StateBasedGame s, int delta)
 			throws SlickException {
-
+		
 		myClockRef.update(delta);
-
+		
+		checkHpToDrawSP();
+		
 		playGamePlayStateAD();
 
 		checkTimeIncreaseHP();
@@ -228,8 +253,41 @@ public class GamePlayState extends BasicGameState {
 		octopusRef.update(c);
 		updateGame(c, delta);
 		score = myClockRef.currentTime;
+		
 		checkHP(s, c);
 	}
+
+	private void checkHpToDrawSP() {
+		getDamageSP();
+		getHealthSP();
+		hpRef.currentHp = hpRef.hp;
+	}
+
+	private void getDamageSP() {
+		if(hpRef.hp<hpRef.currentHp)
+		{
+			getDamage=true;
+		}
+		
+		damageDelay-=myClockRef.getOneSec();
+		if(damageDelay==0){
+			getDamage = false;
+			damageDelay=maxDamageDelay;
+		}
+	}
+	private void getHealthSP(){
+		if(hpRef.hp>hpRef.currentHp)
+		{
+			getHealth=true;
+		}
+		
+		healthDelay-=myClockRef.getOneSec();
+		if(healthDelay==0){
+			getHealth = false;
+			healthDelay=maxHealthDelay;
+		}
+	}
+	
 
 	private void playGamePlayStateAD() {
 
@@ -276,8 +334,9 @@ public class GamePlayState extends BasicGameState {
 
 		if (hpRef.hp == 0) {
 			resetGamePlayScene();
+			WritingRanking.scoreToWrite = this.score;
 			this.init(c, s);
-			s.enterState(StateController.GameOver);
+			s.enterState(StateController.GAMEOVER);
 
 		}
 	}
@@ -314,7 +373,7 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public int getID() {
 
-		return StateController.GamePlay;
+		return StateController.GAMEPLAY;
 	}
 
 }

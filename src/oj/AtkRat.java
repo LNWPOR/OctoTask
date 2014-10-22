@@ -32,14 +32,10 @@ public class AtkRat {
 	public AtkRat() throws SlickException {
 
 		audioRef = new AudioGM();
-		atkWhiteLeftSP = new SpriteSheet("res/atk_white_sp_left.png", 92, 200);
-		atkWhiteLeftAnim = new Animation(atkWhiteLeftSP, 100);
-		atkWhiteLeftSP = new SpriteSheet("res/atk_white_sp_left.png", 92, 200);
+		atkWhiteLeftSP = new SpriteSheet("res/atk_white_sp_left2.png", 92, 200);
 		atkWhiteLeftAnim = new Animation(atkWhiteLeftSP, 100);
 
-		atkWhiteRightSP = new SpriteSheet("res/atk_white_sp_right.png", 92, 200);
-		atkWhiteRightAnim = new Animation(atkWhiteLeftSP, 100);
-		atkWhiteRightSP = new SpriteSheet("res/atk_white_sp_right.png", 92, 200);
+		atkWhiteRightSP = new SpriteSheet("res/atk_white_sp_right2.png", 92, 200);
 		atkWhiteRightAnim = new Animation(atkWhiteRightSP, 100);
 
 		atkWhiteLeftShapeRec = new Rectangle(this.x, this.y, 92, 200);
@@ -63,7 +59,7 @@ public class AtkRat {
 		}
 
 		if (isAtkRight) {
-			atkWhiteRightAnim.draw(x + 250, y);
+			atkWhiteRightAnim.draw(x + 225, y);
 			isAtkRight = false;
 		}
 	}
@@ -72,7 +68,7 @@ public class AtkRat {
 
 		x = octopusRef.getX() - 50;
 		atkWhiteLeftShapeRec.setLocation(x, y);
-		atkWhiteRightShapeRec.setLocation(x + 250, y);
+		atkWhiteRightShapeRec.setLocation(x + 225, y);
 		atk(c);
 
 	}

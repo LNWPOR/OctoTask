@@ -1,7 +1,5 @@
 package state;
 
-import javax.xml.ws.handler.MessageContext.Scope;
-
 import gm.AudioGM;
 import gm.GameController;
 
@@ -20,7 +18,8 @@ public class GameOverState extends BasicGameState {
 	private Image scoreBoxImg;
 	private AudioGM audioRef;
 	private boolean playOverAD = false;
-
+	
+	
 	@Override
 	public void init(GameContainer c, StateBasedGame s) throws SlickException {
 
@@ -48,11 +47,27 @@ public class GameOverState extends BasicGameState {
 
 		playOverAD();
 
+		enterMenuState(c, s);
+		enterRankingState(c, s);
+	}
+
+	private void enterRankingState(GameContainer c, StateBasedGame s) throws SlickException {
+		if (c.getInput().isKeyPressed(Input.KEY_2)
+				&& !audioRef.gameOverAD.playing()) {
+			GamePlayState.score = 0;
+			playOverAD = false;
+			RankingState.enterRankingState =true;
+			s.enterState(StateController.RANKING);
+
+		}
+	}
+
+	private void enterMenuState(GameContainer c, StateBasedGame s) {
 		if (c.getInput().isKeyPressed(Input.KEY_1)
 				&& !audioRef.gameOverAD.playing()) {
 			GamePlayState.score = 0;
 			playOverAD = false;
-			s.enterState(StateController.Menu);
+			s.enterState(StateController.MENU);
 
 		}
 	}
@@ -68,7 +83,7 @@ public class GameOverState extends BasicGameState {
 	@Override
 	public int getID() {
 
-		return StateController.GameOver;
+		return StateController.GAMEOVER;
 	}
 
 }
