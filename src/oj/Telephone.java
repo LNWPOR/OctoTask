@@ -36,10 +36,10 @@ public class Telephone {
 	Random rand = new Random();
 
 	private MyClock myClockRef;
-	private int maxLimitComingPhoneTime = 10;
+	public int maxLimitComingPhoneTime = 10;
 	private int limitComingPhoneTime = maxLimitComingPhoneTime;
 
-	private int MaxtTimeForNextCall = 5;
+	public int MaxtTimeForNextCall = 5;
 	private int timeForNextCall = MaxtTimeForNextCall;
 
 	private HP hpRef;

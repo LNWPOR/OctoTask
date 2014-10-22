@@ -17,7 +17,7 @@ public class Octopus {
 	private static float x = GameController.gameWidth / 2 - 100;
 	private static float y = GameController.gameHeight / 2 + 10;
 	public static Shape octoShapeRec;
-	public boolean octoCanMove = false;
+	public boolean octoCanMove;
 	public float speed = 1;
 	
 	public SpriteSheet octopusSP;//200*200
@@ -29,6 +29,7 @@ public class Octopus {
 		x = GameController.gameWidth / 2 - 100;
 		y = GameController.gameHeight / 2 + 10;
 		octoShapeRec = new Rectangle(this.x, this.y, 200, 200);
+		octoCanMove =false;
 	}
 
 	public void render(Graphics g) {

@@ -27,7 +27,7 @@ public class Calculator {
 	private int ans3;
 	Random rand = new Random();
 	private MyClock myClockRef;
-	private int maxCalTime = 6;
+	public int maxCalTime = 6;
 	private int calTime = maxCalTime;
 	private AudioGM audioRef;
 

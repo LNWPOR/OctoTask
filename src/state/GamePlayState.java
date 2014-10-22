@@ -1,6 +1,7 @@
 package state;
 
 import gm.AudioGM;
+import gm.GameController;
 import gm.WritingRanking;
 import oj.AtkRat;
 import oj.Calculator;
@@ -28,7 +29,6 @@ public class GamePlayState extends BasicGameState {
 	private int dustCount = 5;
 
 	private Octopus octopusRef;
-	private boolean octocacmove = false;
 
 	private Calculator calRef;
 
@@ -60,26 +60,46 @@ public class GamePlayState extends BasicGameState {
 
 	private AtkRat atkRef;
 	private AudioGM audioRef;
+	
+	private int[] timeLv = {45,60,75};//Lv2,3,4
+	private boolean[] checkLv = {true,true,true};
+	private int showLvTime = 3;
 
 	public GamePlayState() throws SlickException {
 
 		blackground = new Image("res/bg.png");
+		heart = new Image("res/heart.png");
 		hpRef = new HP();
 		HP.hp = maxHP;
+		audioRef = new AudioGM();
 
 	}
 
 	@Override
 	public void init(GameContainer c, StateBasedGame s) throws SlickException {
-
-		audioRef = new AudioGM();
-		heart = new Image("res/heart.png");
+		setupLv();
 		octopusRef = new Octopus();
 		myClockRef = new MyClock();
 		initGame1();
 		initGame2();
 		initGame3();
 		initGame4();
+	}
+
+	private void setupLv() {
+	
+		for(int i = 0 ;i<3;i++)
+		{
+			checkLv[i]=true;
+		}
+		
+		getDamage=false;
+		getHealth=false;
+		damageDelay=maxDamageDelay;
+		healthDelay=maxHealthDelay;
+	
+		hpRef.hp = maxHP;
+		timeIncreaseHP = maxtimeIncreaseHP;
 	}
 
 	private void initGame1() throws SlickException {
@@ -125,6 +145,41 @@ public class GamePlayState extends BasicGameState {
 		g.drawString("HP " + HP.hp, 100, 10);
 		g.drawString("Time : " + myClockRef.getTime(), 150, 10);
 		drawTutorial(g);
+		
+		renderLvChange(g);
+		
+	}
+
+	private void renderLvChange(Graphics g) {
+		if (myClockRef.getTime() > timeLv[0] && myClockRef.getTime()<= timeLv[0]+showLvTime) {
+			renderLv2Text(g);
+		}
+		else if (myClockRef.getTime() > timeLv[1]&&myClockRef.getTime() <= timeLv[1]+showLvTime)
+		{
+			renderLv3Text(g);
+		}
+		else if (myClockRef.getTime() > timeLv[2]&&myClockRef.getTime() <= timeLv[2]+showLvTime)
+		{
+			renderLv4Text(g);
+		}
+	}
+
+	private void renderLv4Text(Graphics g) {
+		g.fillRect(GameController.gameWidth / 2 - 90, GameController.gameHeight / 2 -265,175,55 );
+		g.setColor(Color.red);
+		g.drawString("Lv "+4,GameController.gameWidth / 2 - 25, GameController.gameHeight / 2 -245);
+	}
+
+	private void renderLv3Text(Graphics g) {
+		g.fillRect(GameController.gameWidth / 2 - 90, GameController.gameHeight / 2 -265,175,55 );
+		g.setColor(Color.red);
+		g.drawString("Lv "+3,GameController.gameWidth / 2 - 25, GameController.gameHeight / 2 -245);
+	}
+
+	private void renderLv2Text(Graphics g) {
+		g.fillRect(GameController.gameWidth / 2 - 90, GameController.gameHeight / 2 -265,175,55 );
+		g.setColor(Color.red);
+		g.drawString("Lv "+2, GameController.gameWidth / 2 - 25, GameController.gameHeight / 2 -245);
 	}
 
 	private void renderGetDamageSP() {
@@ -250,11 +305,33 @@ public class GamePlayState extends BasicGameState {
 
 		checkTimeIncreaseHP();
 
+		lvChanger();
+		
+		
 		octopusRef.update(c);
 		updateGame(c, delta);
 		score = myClockRef.currentTime;
 		
 		checkHP(s, c);
+	}
+
+	private void lvChanger() {
+		for(int i=0;i<3;i++)
+		{
+			if(myClockRef.getTime() ==timeLv[i] && checkLv[i] )
+			{
+				calRef.maxCalTime -= 1;
+				ratBlackRef.speed *= 1.25;
+				ratWhiteRef.speed *= 1.25;
+				for(int j =0;j<dustCount;j++)
+				{
+					dusts[j].speedFallDown *=1.25;
+				}
+				phoneRef.maxLimitComingPhoneTime -=2;
+				phoneRef.MaxtTimeForNextCall -=1;
+				checkLv[i]=false;
+			}
+		}
 	}
 
 	private void checkHpToDrawSP() {
@@ -333,7 +410,7 @@ public class GamePlayState extends BasicGameState {
 			throws SlickException {
 
 		if (hpRef.hp == 0) {
-			resetGamePlayScene();
+		
 			WritingRanking.scoreToWrite = this.score;
 			this.init(c, s);
 			s.enterState(StateController.GAMEOVER);
@@ -341,14 +418,7 @@ public class GamePlayState extends BasicGameState {
 		}
 	}
 
-	private void resetGamePlayScene() {
-
-		hpRef.hp = maxHP;
-		timeIncreaseHP = maxtimeIncreaseHP;
-	}
-
 	private void updateGame2(GameContainer c, int delta) {
-
 		ratWhiteRef.update(c);
 		ratBlackRef.update(c);
 		atkRef.update(c);
@@ -359,9 +429,8 @@ public class GamePlayState extends BasicGameState {
 		for (Dust dust : dusts) {
 			dust.update(c);
 		}
-		if (!octocacmove) {
+		if (!octopusRef.octoCanMove) {
 			octopusRef.octoCanMove = true;
-			octocacmove = true;
 		}
 	}
 

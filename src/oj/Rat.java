@@ -18,7 +18,7 @@ public class Rat {
 	protected float startX;
 	protected float x;
 	protected float y;
-	protected float speed = 1;
+	public float speed = 1;
 	protected Shape ratShapeRec;// 160*80
 	protected Image ratImg;
 	protected boolean startFromleft;

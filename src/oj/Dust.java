@@ -17,7 +17,7 @@ public class Dust {
 	private Image dustImg; // 60*60
 	private float x;
 	private float y;
-	private float speedFallDown = (float) 0.3;
+	public float speedFallDown = (float) 0.3;
 	private Octopus octopusRef;
 	private float rangeFall;
 	private Shape dustShapeRec;
