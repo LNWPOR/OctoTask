@@ -320,6 +320,7 @@ public class GamePlayState extends BasicGameState {
 		{
 			if(myClockRef.getTime() ==timeLv[i] && checkLv[i] )
 			{
+				octopusRef.speed *= 1.25;
 				calRef.maxCalTime -= 1;
 				ratBlackRef.speed *= 1.25;
 				ratWhiteRef.speed *= 1.25;
