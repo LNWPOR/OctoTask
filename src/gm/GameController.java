@@ -24,7 +24,7 @@ public class GameController extends StateBasedGame {
 		try {
 			AppGameContainer app = new AppGameContainer(new GameController("OctoTask"));
 			app.setDisplayMode(gameWidth, gameHeight, false);
-			app.setMinimumLogicUpdateInterval(1000/6);
+			//app.setMinimumLogicUpdateInterval(1000/6);
 			//app.setMaximumLogicUpdateInterval(1000/6);
 			app.start();
 		} catch (SlickException e) {
